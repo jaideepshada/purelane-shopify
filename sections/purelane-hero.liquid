@@ -85,16 +85,16 @@
              loading="eager" />
         
         <div class="pl-hero__ptag">
-          <span class="pl-hero__ptag-label">Featured Product</span>
+          <span class="pl-hero__ptag-label">Best-seller combo</span>
           <div class="pl-hero__ptag-val">
-            <strong>₹{{ hero_product.price | money_without_currency | strip }}</strong>
+            <strong>₹{{ hero_product.price | money_without_currency | strip | replace: '.00', '' }}</strong>
             {%- if hero_product.compare_at_price > hero_product.price -%}
-              <s>₹{{ hero_product.compare_at_price | money_without_currency | strip }}</s>
+              <s>₹{{ hero_product.compare_at_price | money_without_currency | strip | replace: '.00', '' }}</s>
             {%- endif -%}
           </div>
           {%- if hero_product.compare_at_price > hero_product.price -%}
-            {%- assign discount = hero_product.compare_at_price | minus: hero_product.price | times: 100.0 | divided_by: hero_product.compare_at_price | round -%}
-            <span class="pl-hero__ptag-cut">Save {{ discount }}%</span>
+            {%- assign discount_amount = hero_product.compare_at_price | minus: hero_product.price | money_without_currency | strip | replace: '.00', '' -%}
+            <span class="pl-hero__ptag-cut">SAVE ₹{{ discount_amount }}</span>
           {%- endif -%}
         </div>
       </div>
