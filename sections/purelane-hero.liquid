@@ -33,9 +33,9 @@
     <div class="pl-hero__copy">
       <h1 class="pl-d1 pl-rv" style="transition-delay: 0.1s;">
         {%- if section.settings.heading_highlight != blank -%}
-          {{ section.settings.heading | replace: section.settings.heading_highlight, '<span class="pl-lime">' | append: section.settings.heading_highlight | append: '</span>' }}
+          {{ section.settings.heading | newline_to_br | replace: section.settings.heading_highlight, '<span class="pl-lime">' | append: section.settings.heading_highlight | append: '</span>' }}
         {%- else -%}
-          {{ section.settings.heading }}
+          {{ section.settings.heading | newline_to_br }}
         {%- endif -%}
       </h1>
 
@@ -77,13 +77,13 @@
       </div>
     </div>
     
-    {%- if hero_product -%}
-      <div class="pl-hero__product pl-rv" style="transition-delay: 0.5s;">
-        <img src="{{ 'purelane-bottle-tbtl.svg' | asset_url }}" alt="" class="pl-hero__bottle pl-hero__bottle--a" />
-        <img src="{{ 'purelane-bottle-kbtl.svg' | asset_url }}" alt="" class="pl-hero__bottle pl-hero__bottle--c" />
-        <img src="{{ 'purelane-bottle-mbtl.svg' | asset_url }}" alt="" class="pl-hero__bottle pl-hero__bottle--b" />
-        
-        <div class="pl-hero__ptag">
+    <div class="pl-hero__product pl-rv" style="transition-delay: 0.5s;">
+      <img src="{{ 'purelane-bottle-tbtl.svg' | asset_url }}" alt="" class="pl-hero__bottle pl-hero__bottle--a" />
+      <img src="{{ 'purelane-bottle-kbtl.svg' | asset_url }}" alt="" class="pl-hero__bottle pl-hero__bottle--c" />
+      <img src="{{ 'purelane-bottle-mbtl.svg' | asset_url }}" alt="" class="pl-hero__bottle pl-hero__bottle--b" />
+      
+      <div class="pl-hero__ptag">
+        {%- if hero_product -%}
           <span class="pl-hero__ptag-label">Best-seller combo</span>
           <div class="pl-hero__ptag-val">
             <strong>₹{{ hero_product.price | money_without_currency | strip | replace: '.00', '' }}</strong>
@@ -95,9 +95,16 @@
             {%- assign discount_amount = hero_product.compare_at_price | minus: hero_product.price | money_without_currency | strip | replace: '.00', '' -%}
             <span class="pl-hero__ptag-cut">SAVE ₹{{ discount_amount }}</span>
           {%- endif -%}
-        </div>
+        {%- else -%}
+          <span class="pl-hero__ptag-label">Any 3 products</span>
+          <div class="pl-hero__ptag-val">
+            <strong>₹499</strong>
+            <s>₹897</s>
+          </div>
+          <span class="pl-hero__ptag-cut">Save ₹398</span>
+        {%- endif -%}
       </div>
-    {%- endif -%}
+    </div>
   </div>
 </section>
 
@@ -123,10 +130,10 @@
   "name": "Purelane Hero",
   "settings": [
     {
-      "type": "text",
+      "type": "textarea",
       "id": "heading",
       "label": "Heading",
-      "default": "Clean That Lasts"
+      "default": "Clean\nThat\nLasts"
     },
     {
       "type": "text",

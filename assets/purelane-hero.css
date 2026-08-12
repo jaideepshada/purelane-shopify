@@ -37,7 +37,10 @@
 }
 
 .pl-hero__copy { max-width: 600px; position: relative; z-index: 3; }
-.pl-hero h1 { margin-bottom: 20px; }
+.pl-hero h1 { 
+  margin-bottom: 20px; 
+  text-shadow: 0 6px 40px rgba(2,20,19,.55);
+}
 
 /* Rule divider */
 .pl-hero__rule {
