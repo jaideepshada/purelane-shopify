@@ -18,9 +18,9 @@
   </div>
   <div class="pl-card__price">
     {% if product.available %}
-      <strong>₹{{ product.price | divided_by: 100.0 | floor }}</strong>
+      <strong>₹{{ product.price | money_without_currency | strip }}</strong>
       {% if product.compare_at_price > product.price %}
-        <s>₹{{ product.compare_at_price | divided_by: 100.0 | floor }}</s>
+        <s>₹{{ product.compare_at_price | money_without_currency | strip }}</s>
         {% assign discount = product.compare_at_price | minus: product.price | times: 100 | divided_by: product.compare_at_price %}
         <em>{{ discount }}% off</em>
       {% endif %}

@@ -87,9 +87,9 @@
         <div class="pl-hero__ptag">
           <span class="pl-hero__ptag-label">Featured Product</span>
           <div class="pl-hero__ptag-val">
-            <strong>₹{{ hero_product.price | divided_by: 100.0 | floor }}</strong>
+            <strong>₹{{ hero_product.price | money_without_currency | strip }}</strong>
             {%- if hero_product.compare_at_price > hero_product.price -%}
-              <s>₹{{ hero_product.compare_at_price | divided_by: 100.0 | floor }}</s>
+              <s>₹{{ hero_product.compare_at_price | money_without_currency | strip }}</s>
             {%- endif -%}
           </div>
           {%- if hero_product.compare_at_price > hero_product.price -%}
