@@ -1,20 +1,23 @@
-/* ---------- SCENES: prototype emerald green ocean, depth by scroll ---------- */
-.scenes{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden;background:#00625d}
+/* ---------- scenes: sunlit shallow water ---------- */
+.scenes{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden;background:#eee7fb}
 .scene{position:absolute;inset:0;opacity:0;transition:opacity 1.5s ease}
 .scene.on{opacity:1}
-.s1{background:linear-gradient(178deg,#1ea38d 0%,#0b8578 22%,#017069 48%,#4b3a8f 74%,#01524e 100%)}
-.s2{background:linear-gradient(178deg,#12907f 0%,#04756e 26%,#4b3a8f 58%,#01514d 100%)}
-.s3{background:linear-gradient(178deg,#067c71 0%,#00625d 30%,#014e4a 64%,#023c39 100%)}
-.s4{background:linear-gradient(178deg,#036359 0%,#014b46 32%,#013431 66%,#012422 100%)}
+.s1{background:linear-gradient(178deg,#fbfffb 0%,#eafaec 24%,#d6f1dc 54%,#bfe8ca 100%)}
+.s2{background:linear-gradient(178deg,#f6fdf7 0%,#e3f7e7 26%,#cbedd4 58%,#b2e2c2 100%)}
+.s3{background:linear-gradient(178deg,#f0fbf2 0%,#d9f2df 28%,#bde6c8 60%,#a2d9b6 100%)}
+.s4{background:linear-gradient(178deg,#e9f8ec 0%,#cdedd6 30%,#addcbe 62%,#8ecdaa 100%)}
 
 /* ---------- WATER CINEMATICS ---------- */
 .water{position:absolute;inset:-14% -10%;pointer-events:none;transition:opacity 1.2s ease}
 .wl{position:absolute;inset:0;will-change:transform;translate:var(--px,0) var(--py,0)}
 .wl .sv{width:100%;height:100%;display:block}
-.wl-a{mix-blend-mode:screen;opacity:.8;animation:drift-a 34s linear infinite}
-.wl-b{mix-blend-mode:screen;opacity:.54;animation:drift-b 23s linear infinite}
-.wl-c{mix-blend-mode:screen;opacity:.5;animation:shaft-sway 19s ease-in-out infinite}
-.wl-s{mix-blend-mode:screen;opacity:.7;animation:surface 11s ease-in-out infinite;transform-origin:50% 0}
+
+/* ---------- water: white light on a light ground ---------- */
+.wl-a{mix-blend-mode:soft-light;opacity:1;animation:drift-a 34s linear infinite}
+.wl-a .sv{filter:contrast(1.25)}
+.wl-b{mix-blend-mode:overlay;opacity:.66;animation:drift-b 23s linear infinite}
+.wl-c{mix-blend-mode:overlay;opacity:.6;animation:shaft-sway 19s ease-in-out infinite}
+.wl-s{mix-blend-mode:overlay;opacity:.72;animation:surface 11s ease-in-out infinite;transform-origin:50% 0}
 
 @keyframes drift-a{
   0%{transform:translate3d(-3%,0,0) scale(1.06)}
@@ -39,16 +42,16 @@
 
 /* depth response */
 .scenes[data-d="1"] .water{opacity:1}
-.scenes[data-d="2"] .water{opacity:.8}
-.scenes[data-d="3"] .water{opacity:.58}
-.scenes[data-d="4"] .water{opacity:.34}
+.scenes[data-d="2"] .water{opacity:.9}
+.scenes[data-d="3"] .water{opacity:.76}
+.scenes[data-d="4"] .water{opacity:.58}
 .scenes[data-d="1"] .wl-s{opacity:.7}
 .scenes[data-d="2"] .wl-s,.scenes[data-d="3"] .wl-s,.scenes[data-d="4"] .wl-s{opacity:0}
 
 /* bubbles */
 .bub{position:absolute;inset:0;overflow:hidden}
 .bub span{position:absolute;bottom:-6%;left:var(--x);width:var(--s);height:var(--s);border-radius:50%;
-  border:1px solid rgba(230,255,242,.5);background:radial-gradient(circle at 34% 30%,rgba(255,255,255,.42),rgba(255,255,255,0) 62%);
+  border:1px solid rgba(75,58,143,.26);background:radial-gradient(circle at 34% 30%,rgba(255,255,255,.9),rgba(255,255,255,0) 64%);
   animation:rise var(--dur) linear infinite;animation-delay:var(--dly);opacity:0}
 @keyframes rise{
   0%{transform:translate3d(0,0,0);opacity:0}
@@ -58,5 +61,5 @@
 }
 
 .vig{position:absolute;inset:0;pointer-events:none;
-  background:radial-gradient(126% 86% at 50% 28%,transparent 38%,rgba(1,50,46,.20) 78%,rgba(1,34,32,.44) 100%),
-             linear-gradient(180deg,rgba(1,38,36,.30) 0%,transparent 18%,transparent 66%,rgba(1,32,30,.40) 100%)}
+  background:radial-gradient(126% 88% at 50% 26%,transparent 42%,rgba(75,58,143,.07) 80%,rgba(0,80,74,.16) 100%),
+  linear-gradient(180deg,rgba(255,255,255,.40) 0%,transparent 20%,transparent 70%,rgba(0,84,78,.10) 100%)}
