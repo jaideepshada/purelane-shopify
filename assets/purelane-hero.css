@@ -5,8 +5,6 @@
   display: flex;
   align-items: flex-end;
   padding: 80px 0 0;
-  /* Light background gradient */
-  background: linear-gradient(178deg, #fbfffb 0%, #eafaec 24%, #d6f1dc 54%, #bfe8ca 100%);
 }
 .pl-hero::before {
   content: "";
