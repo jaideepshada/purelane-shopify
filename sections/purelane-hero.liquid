@@ -8,7 +8,7 @@
 
 <section class="pl-hero" aria-label="Hero">
   <!-- Desktop Badges Rail -->
-  <aside class="pl-hero__badges" data-reveal style="transition-delay: 0.6s;">
+  <aside class="pl-hero__badges pl-glass pl-rv" style="transition-delay: 0.6s;">
     <div class="pl-hero__badge">
       <div class="pl-hero__badge-icon">
         {% render 'purelane-icons', name: 'leaf' %}
@@ -23,7 +23,7 @@
     </div>
     <div class="pl-hero__badge">
       <div class="pl-hero__badge-icon">
-        {% render 'purelane-icons', name: 'sparkle' %}
+        {% render 'purelane-icons', name: 'no-chemical' %}
       </div>
       <span>{{ section.settings.badge_3_text }}</span>
     </div>
@@ -31,36 +31,36 @@
 
   <div class="pl-hero__grid">
     <div class="pl-hero__copy">
-      <div class="pl-hero__rule" data-reveal>
+      <div class="pl-hero__rule pl-rv">
         {% render 'purelane-icons', name: 'leaf' %}
         <i></i>
       </div>
       
-      <h1 class="pl-heading-1" data-reveal style="transition-delay: 0.1s;">
+      <h1 class="pl-d1 pl-rv" style="transition-delay: 0.1s;">
         {%- if section.settings.heading_highlight != blank -%}
-          {{ section.settings.heading | replace: section.settings.heading_highlight, '<span class="pl-text-accent">' | append: section.settings.heading_highlight | append: '</span>' }}
+          {{ section.settings.heading | replace: section.settings.heading_highlight, '<span class="pl-lime">' | append: section.settings.heading_highlight | append: '</span>' }}
         {%- else -%}
           {{ section.settings.heading }}
         {%- endif -%}
       </h1>
       
-      <p class="pl-text-lg" data-reveal style="transition-delay: 0.2s;">
+      <p class="pl-lede pl-rv" style="transition-delay: 0.2s;">
         {{ section.settings.subheading }}
       </p>
 
-      <div class="pl-hero__cta" data-reveal style="transition-delay: 0.3s;">
-        <a href="{{ section.settings.button_link }}" class="pl-btn pl-btn--primary">
+      <div class="pl-hero__cta pl-rv" style="transition-delay: 0.3s;">
+        <a href="{{ section.settings.button_link }}" class="pl-btn pl-btn-primary">
           {{ section.settings.button_label }}
         </a>
         {%- if section.settings.secondary_button_label != blank -%}
-          <a href="{{ section.settings.secondary_button_link }}" class="pl-btn pl-btn--ghost">
+          <a href="{{ section.settings.secondary_button_link }}" class="pl-btn pl-btn-ghost">
             {{ section.settings.secondary_button_label }}
           </a>
         {%- endif -%}
       </div>
 
       <!-- Mobile Badge Strip -->
-      <div class="pl-hero__strip" data-reveal style="transition-delay: 0.4s;">
+      <div class="pl-hero__strip pl-rv" style="transition-delay: 0.4s;">
         <div class="pl-hero__strip-item">
           {% render 'purelane-icons', name: 'leaf' %}
           {{ section.settings.badge_1_text }}
@@ -70,14 +70,14 @@
           {{ section.settings.badge_2_text }}
         </div>
         <div class="pl-hero__strip-item">
-          {% render 'purelane-icons', name: 'sparkle' %}
+          {% render 'purelane-icons', name: 'no-chemical' %}
           {{ section.settings.badge_3_text }}
         </div>
       </div>
     </div>
     
     {%- if hero_product -%}
-      <div class="pl-hero__product" data-reveal style="transition-delay: 0.5s;">
+      <div class="pl-hero__product pl-rv" style="transition-delay: 0.5s;">
         <img src="{{ hero_product.featured_image | image_url: width: 1000 }}" 
              alt="{{ hero_product.title | escape }}" 
              width="{{ hero_product.featured_image.width }}" 
@@ -107,13 +107,13 @@
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
-          entry.target.classList.add('is-visible');
+          entry.target.classList.add('in');
           observer.unobserve(entry.target);
         }
       });
     }, { threshold: 0.1 });
 
-    document.querySelectorAll('.pl-hero [data-reveal]').forEach(el => {
+    document.querySelectorAll('#shopify-section-{{ section.id }} .pl-rv').forEach(el => {
       observer.observe(el);
     });
   });

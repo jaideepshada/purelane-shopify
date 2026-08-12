@@ -1,15 +1,16 @@
 {{ 'purelane-base.css' | asset_url | stylesheet_tag }}
 {{ 'purelane-bundles.css' | asset_url | stylesheet_tag }}
 
-<section class="pl-glass pl-sec-pad pl-reveal pl-sec--bundles">
-  <div class="pl-page-width">
+<section class="pl-sec" id="bundles">
+  <div class="pl-wrap">
+    <div class="pl-glass pl-sec-pad pl-rv">
     
-    <div class="pl-sec-hd">
+    <div class="pl-panel-head">
       {%- if section.settings.kicker != blank -%}
         <span class="pl-kicker">{{ section.settings.kicker }}</span>
       {%- endif -%}
       {%- if section.settings.heading != blank -%}
-        <h2 class="pl-h2">{{ section.settings.heading }}</h2>
+        <h2 class="pl-d2" style="margin-top:12px">{{ section.settings.heading }}</h2>
       {%- endif -%}
       {%- if section.settings.subheading != blank -%}
         <p class="pl-lede">{{ section.settings.subheading }}</p>
@@ -19,10 +20,10 @@
     <div class="pl-tiers">
       {%- for block in section.blocks -%}
         {%- assign delay_class = '' -%}
-        {%- if forloop.index == 2 -%}{%- assign delay_class = 'rv-d2' -%}{%- endif -%}
-        {%- if forloop.index == 3 -%}{%- assign delay_class = 'rv-d3' -%}{%- endif -%}
+        {%- if forloop.index == 2 -%}{%- assign delay_class = 'pl-rv-d2' -%}{%- endif -%}
+        {%- if forloop.index == 3 -%}{%- assign delay_class = 'pl-rv-d3' -%}{%- endif -%}
         
-        <div class="pl-card pl-tier{% if block.settings.is_best %} pl-tier--best{% endif %} pl-reveal {{ delay_class }}" {{ block.shopify_attributes }}>
+        <div class="pl-glass pl-tier{% if block.settings.is_best %} pl-tier--best{% endif %} pl-rv {{ delay_class }}" {{ block.shopify_attributes }}>
           {%- if block.settings.tag != blank -%}
             <span class="pl-tier__tag">{{ block.settings.tag }}</span>
           {%- endif -%}
@@ -68,7 +69,25 @@
       {%- endfor -%}
     </div>
   </div>
+  </div>
 </section>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('in');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('#shopify-section-{{ section.id }} .pl-rv').forEach(el => {
+      observer.observe(el);
+    });
+  });
+</script>
 
 {% schema %}
 {

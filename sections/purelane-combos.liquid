@@ -2,26 +2,26 @@
 {{ 'purelane-combos.css' | asset_url | stylesheet_tag }}
 
 <section class="pl-sec">
-  <div class="pl-cont">
+  <div class="pl-wrap">
     
-    <div class="pl-hdr pl-hdr--c">
+    <div class="pl-panel-head">
       {% if section.settings.kicker != blank %}
-        <span class="pl-kicker pl-reveal">{{ section.settings.kicker }}</span>
+        <span class="pl-kicker pl-rv">{{ section.settings.kicker }}</span>
       {% endif %}
       {% if section.settings.heading != blank %}
-        <h2 class="pl-h2 pl-reveal" style="transition-delay: .1s;">{{ section.settings.heading }}</h2>
+        <h2 class="pl-d2 pl-rv" style="transition-delay: .1s;">{{ section.settings.heading }}</h2>
       {% endif %}
-      <div class="pl-leaf-div pl-reveal" style="transition-delay: .15s;">
-        {% render 'purelane-icons', icon: 'leaf' %}
+      <div class="pl-rule pl-rv" style="transition-delay: .15s;">
+        <i></i>{% render 'purelane-icons', name: 'leaf' %}<i></i>
       </div>
       {% if section.settings.lede != blank %}
-        <p class="pl-lede pl-reveal" style="transition-delay: .2s;">{{ section.settings.lede }}</p>
+        <p class="pl-lede pl-rv" style="transition-delay: .2s;">{{ section.settings.lede }}</p>
       {% endif %}
     </div>
 
-    <div class="pl-comborail pl-reveal" style="transition-delay: .3s;">
+    <div class="pl-comborail pl-rv" style="transition-delay: .3s;">
       {% for block in section.blocks %}
-        <div class="pl-card pl-combo {% if block.settings.is_hero %}pl-combo--hero{% endif %}" {{ block.shopify_attributes }}>
+        <div class="pl-glass pl-combo {% if block.settings.is_hero %}pl-combo--hero{% endif %}" {{ block.shopify_attributes }}>
           <div class="pl-combo__tray">
             {% if block.settings.save_label != blank %}
               <div class="pl-combo__save">{{ block.settings.save_label }}</div>
@@ -33,7 +33,7 @@
             <div class="pl-stack">
               {% if block.settings.product_1_title != blank %}
                 <div class="pl-stack__item">
-                  <div class="pl-stack__img">{% render 'purelane-icons', icon: 'leaf' %}</div>
+                  <div class="pl-stack__img">{% render 'purelane-icons', name: 'leaf' %}</div>
                   <span>{{ block.settings.product_1_title }}</span>
                 </div>
               {% endif %}
@@ -42,9 +42,9 @@
                 <div class="pl-stack__plus">+</div>
                 <div class="pl-stack__item">
                   {% if block.settings.product_2_is_placeholder %}
-                    <div class="pl-stack__tile">{% render 'purelane-icons', icon: 'leaf' %}</div>
+                    <div class="pl-stack__tile">{% render 'purelane-icons', name: 'leaf' %}</div>
                   {% else %}
-                    <div class="pl-stack__img">{% render 'purelane-icons', icon: 'leaf' %}</div>
+                    <div class="pl-stack__img">{% render 'purelane-icons', name: 'leaf' %}</div>
                   {% endif %}
                   {% if block.settings.product_2_title != blank %}
                     <span>{{ block.settings.product_2_title }}</span>
@@ -55,7 +55,7 @@
               {% if block.settings.product_3_title != blank %}
                 <div class="pl-stack__plus">+</div>
                 <div class="pl-stack__item">
-                  <div class="pl-stack__img">{% render 'purelane-icons', icon: 'leaf' %}</div>
+                  <div class="pl-stack__img">{% render 'purelane-icons', name: 'leaf' %}</div>
                   <span>{{ block.settings.product_3_title }}</span>
                 </div>
               {% endif %}
@@ -90,17 +90,34 @@
       {% endfor %}
     </div>
 
-    <div class="pl-swipecue pl-reveal" style="transition-delay: .4s;">
-      {% render 'purelane-icons', icon: 'arrow' %}
+    <div class="pl-swipecue pl-rv" style="transition-delay: .4s;">
+      {% render 'purelane-icons', name: 'arrow' %}
       <span>Swipe for more combos</span>
     </div>
     
-    <p class="pl-railnote pl-reveal" style="transition-delay: .45s;">
+    <p class="pl-railnote pl-rv" style="transition-delay: .45s;">
       Looking for something specific? Mix and match products with our custom bundle picker and save up to 25%.
     </p>
     
   </div>
 </section>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('in');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('#shopify-section-{{ section.id }} .pl-rv').forEach(el => {
+      observer.observe(el);
+    });
+  });
+</script>
 
 {% schema %}
 {

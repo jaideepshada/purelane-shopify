@@ -13,8 +13,8 @@
   }
 {% endstyle %}
 
-<section class="pl-revband pl-revband--{{ section.id }} js-reveal" aria-label="Customer Reviews">
-  <div class="page-width">
+<section class="pl-revband pl-revband--{{ section.id }} pl-rv" aria-label="Customer Reviews">
+  <div class="pl-wrap">
     {% if section.settings.kicker != blank %}
       <div class="pl-kicker" style="text-align: center;">{{ section.settings.kicker }}</div>
     {% endif %}
@@ -36,7 +36,7 @@
       {% comment %} Render blocks twice for seamless infinite scroll {% endcomment %}
       {% for i in (1..2) %}
         {% for block in section.blocks %}
-          <div class="pl-rcard" {{ block.shopify_attributes }}>
+          <div class="pl-rcard pl-glass" {{ block.shopify_attributes }}>
             <div class="pl-rcard__stars" aria-hidden="true">
               {% assign stars = block.settings.stars | default: 5 %}
               {% for star in (1..stars) %}★{% endfor %}
@@ -66,12 +66,12 @@
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
-          entry.target.classList.add('is-visible');
+          entry.target.classList.add('in');
         }
       });
     }, { threshold: 0.1 });
 
-    document.querySelectorAll('.js-reveal').forEach(el => observer.observe(el));
+    document.querySelectorAll('#shopify-section-{{ section.id }} .pl-rv').forEach(el => observer.observe(el));
   });
 </script>
 
