@@ -36,7 +36,6 @@
 /* Review card */
 .pl-rcard {
   flex: 0 0 auto; width: 284px; padding: 15px 17px; border-radius: 18px;
-  background-color: var(--pl-surface-color, #ffffff);
 }
 .pl-rcard__stars { color: #7a9c1e; font-size: 10.5px; letter-spacing: .2em; margin-bottom: 9px; }
 .pl-rcard h5 {

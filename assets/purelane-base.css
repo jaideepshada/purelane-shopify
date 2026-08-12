@@ -86,16 +86,32 @@
   font-family: 'Inter', sans-serif;
 }
 
-body {
+body, html {
+  background: transparent !important;
+  color: var(--pl-paper-2);
   font-family: 'Inter', sans-serif;
   font-size: 14.5px;
-  color: var(--pl-paper-2);
-  background: var(--pl-ink) !important;
-  background-image: linear-gradient(178deg, #fbfffb 0%, #eafaec 24%, #d6f1dc 54%, #bfe8ca 100%) !important;
-  background-attachment: fixed !important;
   line-height: 1.66;
   overflow-x: hidden;
   margin: 0;
+  padding: 0;
+}
+
+[class*="shopify-section"] {
+  border: none !important;
+  box-shadow: none !important;
+}
+[class*="shopify-section"]::after, [class*="shopify-section"]::before {
+  display: none !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+#MainContent, #MainContent .shopify-section, #MainContent [class*="color-"], #MainContent .gradient {
+  background: transparent !important;
+}
+#MainContent hr {
+  display: none !important;
 }
 
 .pl-body-s {
