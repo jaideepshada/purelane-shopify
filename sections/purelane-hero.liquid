@@ -77,34 +77,34 @@
         </div>
       </div>
     </div>
+  </div>
+
+  <div class="pl-hero__product pl-rv" style="transition-delay: 0.5s;">
+    <img src="{{ 'purelane-bottle-tbtl.svg' | asset_url }}" alt="" class="pl-hero__bottle pl-hero__bottle--a" />
+    <img src="{{ 'purelane-bottle-kbtl.svg' | asset_url }}" alt="" class="pl-hero__bottle pl-hero__bottle--c" />
+    <img src="{{ 'purelane-bottle-mbtl.svg' | asset_url }}" alt="" class="pl-hero__bottle pl-hero__bottle--b" />
     
-    <div class="pl-hero__product pl-rv" style="transition-delay: 0.5s;">
-      <img src="{{ 'purelane-bottle-tbtl.svg' | asset_url }}" alt="" class="pl-hero__bottle pl-hero__bottle--a" />
-      <img src="{{ 'purelane-bottle-kbtl.svg' | asset_url }}" alt="" class="pl-hero__bottle pl-hero__bottle--c" />
-      <img src="{{ 'purelane-bottle-mbtl.svg' | asset_url }}" alt="" class="pl-hero__bottle pl-hero__bottle--b" />
-      
-      <div class="pl-hero__ptag">
-        {%- if hero_product -%}
-          <span class="pl-hero__ptag-label">Best-seller combo</span>
-          <div class="pl-hero__ptag-val">
-            <strong>₹{{ hero_product.price | money_without_currency | strip | replace: '.00', '' }}</strong>
-            {%- if hero_product.compare_at_price > hero_product.price -%}
-              <s>₹{{ hero_product.compare_at_price | money_without_currency | strip | replace: '.00', '' }}</s>
-            {%- endif -%}
-          </div>
+    <div class="pl-hero__ptag">
+      {%- if hero_product -%}
+        <span class="pl-hero__ptag-label">Best-seller combo</span>
+        <div class="pl-hero__ptag-val">
+          <strong>₹{{ hero_product.price | money_without_currency | strip | replace: '.00', '' }}</strong>
           {%- if hero_product.compare_at_price > hero_product.price -%}
-            {%- assign discount_amount = hero_product.compare_at_price | minus: hero_product.price | money_without_currency | strip | replace: '.00', '' -%}
-            <span class="pl-hero__ptag-cut">SAVE ₹{{ discount_amount }}</span>
+            <s>₹{{ hero_product.compare_at_price | money_without_currency | strip | replace: '.00', '' }}</s>
           {%- endif -%}
-        {%- else -%}
-          <span class="pl-hero__ptag-label">Any 3 products</span>
-          <div class="pl-hero__ptag-val">
-            <strong>₹499</strong>
-            <s>₹897</s>
-          </div>
-          <span class="pl-hero__ptag-cut">Save ₹398</span>
+        </div>
+        {%- if hero_product.compare_at_price > hero_product.price -%}
+          {%- assign discount_amount = hero_product.compare_at_price | minus: hero_product.price | money_without_currency | strip | replace: '.00', '' -%}
+          <span class="pl-hero__ptag-cut">SAVE ₹{{ discount_amount }}</span>
         {%- endif -%}
-      </div>
+      {%- else -%}
+        <span class="pl-hero__ptag-label">Any 3 products</span>
+        <div class="pl-hero__ptag-val">
+          <strong>₹499</strong>
+          <s>₹897</s>
+        </div>
+        <span class="pl-hero__ptag-cut">Save ₹398</span>
+      {%- endif -%}
     </div>
   </div>
 </section>
