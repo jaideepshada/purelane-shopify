@@ -1,10 +1,10 @@
 .pl-hero {
   position: relative;
   z-index: 2;
-  min-height: 100svh;
+  min-height: calc(100svh - 110px);
   display: flex;
   align-items: flex-end;
-  padding: 50px 0 var(--pl-sec-y);
+  padding: 80px 0 var(--pl-sec-y);
   /* Light background gradient */
   background: linear-gradient(178deg, #fbfffb 0%, #eafaec 24%, #d6f1dc 54%, #bfe8ca 100%);
 }
