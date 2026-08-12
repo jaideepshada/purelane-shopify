@@ -1,0 +1,303 @@
+{{ 'purelane-base.css' | asset_url | stylesheet_tag }}
+{{ 'purelane-combos.css' | asset_url | stylesheet_tag }}
+
+<section class="pl-sec">
+  <div class="pl-cont">
+    
+    <div class="pl-hdr pl-hdr--c">
+      {% if section.settings.kicker != blank %}
+        <span class="pl-kicker pl-reveal">{{ section.settings.kicker }}</span>
+      {% endif %}
+      {% if section.settings.heading != blank %}
+        <h2 class="pl-h2 pl-reveal" style="transition-delay: .1s;">{{ section.settings.heading }}</h2>
+      {% endif %}
+      <div class="pl-leaf-div pl-reveal" style="transition-delay: .15s;">
+        {% render 'purelane-icons', icon: 'leaf' %}
+      </div>
+      {% if section.settings.lede != blank %}
+        <p class="pl-lede pl-reveal" style="transition-delay: .2s;">{{ section.settings.lede }}</p>
+      {% endif %}
+    </div>
+
+    <div class="pl-comborail pl-reveal" style="transition-delay: .3s;">
+      {% for block in section.blocks %}
+        <div class="pl-card pl-combo {% if block.settings.is_hero %}pl-combo--hero{% endif %}" {{ block.shopify_attributes }}>
+          <div class="pl-combo__tray">
+            {% if block.settings.save_label != blank %}
+              <div class="pl-combo__save">{{ block.settings.save_label }}</div>
+            {% endif %}
+            {% if block.settings.flag_text != blank %}
+              <div class="pl-combo__flag">{{ block.settings.flag_text }}</div>
+            {% endif %}
+            
+            <div class="pl-stack">
+              {% if block.settings.product_1_title != blank %}
+                <div class="pl-stack__item">
+                  <div class="pl-stack__img">{% render 'purelane-icons', icon: 'leaf' %}</div>
+                  <span>{{ block.settings.product_1_title }}</span>
+                </div>
+              {% endif %}
+              
+              {% if block.settings.product_2_title != blank or block.settings.product_2_is_placeholder %}
+                <div class="pl-stack__plus">+</div>
+                <div class="pl-stack__item">
+                  {% if block.settings.product_2_is_placeholder %}
+                    <div class="pl-stack__tile">{% render 'purelane-icons', icon: 'leaf' %}</div>
+                  {% else %}
+                    <div class="pl-stack__img">{% render 'purelane-icons', icon: 'leaf' %}</div>
+                  {% endif %}
+                  {% if block.settings.product_2_title != blank %}
+                    <span>{{ block.settings.product_2_title }}</span>
+                  {% endif %}
+                </div>
+              {% endif %}
+              
+              {% if block.settings.product_3_title != blank %}
+                <div class="pl-stack__plus">+</div>
+                <div class="pl-stack__item">
+                  <div class="pl-stack__img">{% render 'purelane-icons', icon: 'leaf' %}</div>
+                  <span>{{ block.settings.product_3_title }}</span>
+                </div>
+              {% endif %}
+            </div>
+          </div>
+          
+          <div class="pl-combo__body">
+            <h3>{{ block.settings.name }}</h3>
+            {% if block.settings.count != blank %}
+              <span class="pl-combo__count">{{ block.settings.count }}</span>
+            {% endif %}
+            {% if block.settings.description != blank %}
+              <p class="pl-combo__desc">{{ block.settings.description }}</p>
+            {% endif %}
+            
+            <div class="pl-combo__prow">
+              <strong>₹{{ block.settings.price }}</strong>
+              {% if block.settings.compare_price != blank %}
+                <s>₹{{ block.settings.compare_price }}</s>
+              {% endif %}
+              {% if block.settings.save_amount != blank %}
+                <em>Save ₹{{ block.settings.save_amount }}</em>
+              {% endif %}
+            </div>
+            <span class="pl-combo__fine">Taxes included.</span>
+            
+            <a href="/collections/all" class="pl-btn pl-btn--s">
+              <span>View Combo</span>
+            </a>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+
+    <div class="pl-swipecue pl-reveal" style="transition-delay: .4s;">
+      {% render 'purelane-icons', icon: 'arrow' %}
+      <span>Swipe for more combos</span>
+    </div>
+    
+    <p class="pl-railnote pl-reveal" style="transition-delay: .45s;">
+      Looking for something specific? Mix and match products with our custom bundle picker and save up to 25%.
+    </p>
+    
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Purelane Combos",
+  "settings": [
+    {
+      "type": "text",
+      "id": "kicker",
+      "label": "Kicker",
+      "default": "Pre-built to save you money"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Best selling combos"
+    },
+    {
+      "type": "textarea",
+      "id": "lede",
+      "label": "Lede text",
+      "default": "Our most popular product combinations, curated for specific needs."
+    }
+  ],
+  "blocks": [
+    {
+      "type": "combo",
+      "name": "Combo",
+      "settings": [
+        {
+          "type": "text",
+          "id": "name",
+          "label": "Combo Name"
+        },
+        {
+          "type": "text",
+          "id": "count",
+          "label": "Product Count",
+          "default": "3 products"
+        },
+        {
+          "type": "textarea",
+          "id": "description",
+          "label": "Description"
+        },
+        {
+          "type": "text",
+          "id": "price",
+          "label": "Price (e.g. 499)"
+        },
+        {
+          "type": "text",
+          "id": "compare_price",
+          "label": "Compare Price (e.g. 897)"
+        },
+        {
+          "type": "text",
+          "id": "save_amount",
+          "label": "Save Amount (e.g. 398)"
+        },
+        {
+          "type": "text",
+          "id": "save_label",
+          "label": "Save Label (Tray)",
+          "default": "You save ₹398"
+        },
+        {
+          "type": "text",
+          "id": "flag_text",
+          "label": "Flag Text (Optional)"
+        },
+        {
+          "type": "checkbox",
+          "id": "is_hero",
+          "label": "Highlight as Hero Combo",
+          "default": false
+        },
+        {
+          "type": "text",
+          "id": "product_1_title",
+          "label": "Product 1 Title"
+        },
+        {
+          "type": "text",
+          "id": "product_2_title",
+          "label": "Product 2 Title"
+        },
+        {
+          "type": "checkbox",
+          "id": "product_2_is_placeholder",
+          "label": "Product 2 is Placeholder Tile",
+          "default": false
+        },
+        {
+          "type": "text",
+          "id": "product_3_title",
+          "label": "Product 3 Title"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Purelane Combos",
+      "blocks": [
+        {
+          "type": "combo",
+          "settings": {
+            "name": "Kitchen essentials",
+            "count": "3 products",
+            "description": "Everything you need for a spotless, germ-free kitchen.",
+            "price": "499",
+            "compare_price": "897",
+            "save_amount": "398",
+            "save_label": "You save ₹398",
+            "flag_text": "Most popular",
+            "is_hero": true,
+            "product_1_title": "Kitchen",
+            "product_2_title": "Dish",
+            "product_2_is_placeholder": false,
+            "product_3_title": "Tap"
+          }
+        },
+        {
+          "type": "combo",
+          "settings": {
+            "name": "Laundry care bundle",
+            "count": "3 products",
+            "description": "Complete care for your clothes and washing machine.",
+            "price": "499",
+            "compare_price": "947",
+            "save_amount": "448",
+            "save_label": "You save ₹448",
+            "flag_text": "",
+            "is_hero": false,
+            "product_1_title": "Laundry",
+            "product_2_title": "",
+            "product_2_is_placeholder": true,
+            "product_3_title": "WM Cleaner"
+          }
+        },
+        {
+          "type": "combo",
+          "settings": {
+            "name": "Complete home bundle",
+            "count": "5 products",
+            "description": "Our biggest bundle for complete home cleanliness.",
+            "price": "799",
+            "compare_price": "1,495",
+            "save_amount": "696",
+            "save_label": "Biggest saving",
+            "flag_text": "Best value",
+            "is_hero": false,
+            "product_1_title": "Kitchen",
+            "product_2_title": "Floor",
+            "product_2_is_placeholder": false,
+            "product_3_title": "Handwash"
+          }
+        },
+        {
+          "type": "combo",
+          "settings": {
+            "name": "Bathroom deep clean",
+            "count": "3 products",
+            "description": "Tough on bathroom stains, gentle on surfaces.",
+            "price": "499",
+            "compare_price": "897",
+            "save_amount": "398",
+            "save_label": "You save ₹398",
+            "flag_text": "",
+            "is_hero": false,
+            "product_1_title": "Toilet",
+            "product_2_title": "Tap",
+            "product_2_is_placeholder": false,
+            "product_3_title": ""
+          }
+        },
+        {
+          "type": "combo",
+          "settings": {
+            "name": "Hard water solution kit",
+            "count": "2 products",
+            "description": "Specially formulated to tackle hard water stains.",
+            "price": "349",
+            "compare_price": "598",
+            "save_amount": "249",
+            "save_label": "You save ₹249",
+            "flag_text": "",
+            "is_hero": false,
+            "product_1_title": "Tap",
+            "product_2_title": "Toilet",
+            "product_2_is_placeholder": false,
+            "product_3_title": ""
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

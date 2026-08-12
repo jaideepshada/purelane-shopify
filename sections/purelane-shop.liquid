@@ -1,0 +1,82 @@
+{{ 'purelane-base.css' | asset_url | stylesheet_tag }}
+{{ 'purelane-shop.css' | asset_url | stylesheet_tag }}
+
+<section id="shop" class="pl-sec" aria-label="{{ section.settings.heading }}">
+  <div class="pl-wrap">
+    <div class="pl-panel-head pl-rv">
+      <span class="pl-kicker">{{ section.settings.kicker }}</span>
+      <h2 class="pl-d2" style="margin-top:12px">{{ section.settings.heading }}</h2>
+      <div class="pl-rule">
+        <i></i>
+        {% render 'purelane-icons', name: 'leaf', size: 16 %}
+        <i></i>
+      </div>
+    </div>
+    <div class="pl-shelf">
+      {% for product in section.settings.collection.products limit: section.settings.products_per_page %}
+        {% assign delay_index = forloop.index0 | modulo: 4 %}
+        {% render 'purelane-product-card', product: product, delay_class: delay_index %}
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<script>
+// IntersectionObserver reveal animation
+(function(){
+  if(window.matchMedia('(prefers-reduced-motion:reduce)').matches) return;
+  var els = document.querySelectorAll('#shopify-section-{{ section.id }} .pl-rv');
+  if(!('IntersectionObserver' in window)){els.forEach(function(e){e.classList.add('in')});return;}
+  var o = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if(e.isIntersecting){e.target.classList.add('in');o.unobserve(e.target);}
+    });
+  },{rootMargin:'0px 0px -12% 0px',threshold:0.12});
+  els.forEach(function(el){o.observe(el);});
+})();
+</script>
+
+{% schema %}
+{
+  "name": "Purelane — Shop Grid",
+  "tag": "section",
+  "class": "purelane-shop-section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "kicker",
+      "label": "Kicker text",
+      "default": "Bestsellers"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Loved by 30,000 homes"
+    },
+    {
+      "type": "collection",
+      "id": "collection",
+      "label": "Collection"
+    },
+    {
+      "type": "range",
+      "id": "products_per_page",
+      "label": "Products to show",
+      "min": 4,
+      "max": 16,
+      "step": 4,
+      "default": 8
+    }
+  ],
+  "presets": [
+    {
+      "name": "Purelane — Shop Grid",
+      "settings": {
+        "kicker": "Bestsellers",
+        "heading": "Loved by 30,000 homes"
+      }
+    }
+  ]
+}
+{% endschema %}

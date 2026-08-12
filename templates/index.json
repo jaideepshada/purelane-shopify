@@ -9,76 +9,113 @@
  */
 {
   "sections": {
-    "image_banner": {
-      "type": "image-banner",
+    "purelane_hero": {
+      "type": "purelane-hero",
+      "settings": {
+        "heading": "Clean That Lasts",
+        "heading_highlight": "Lasts",
+        "subheading": "Homecare that works on the toughest grime, made from plants. Kind to your home, your family and the world outside it.",
+        "button_label": "Shop now",
+        "button_link": "#shopify-section-purelane_shop",
+        "secondary_button_label": "How it works",
+        "secondary_button_link": "",
+        "collection": "shop",
+        "badge_1_text": "Plant powered",
+        "badge_2_text": "Safe for kids & pets",
+        "badge_3_text": "Zero harsh chemicals"
+      }
+    },
+    "purelane_reviews": {
+      "type": "purelane-reviews",
       "blocks": {
-        "heading": {
-          "type": "heading",
+        "review_1": {
+          "type": "review",
           "settings": {
-            "heading": "Browse our latest products",
-            "heading_size": "h0"
+            "stars": 5,
+            "title": "Works like a charm",
+            "body": "Finally an eco option that cleans as well as the chemical detergent I used for years, and it smells better.",
+            "author": "Anita",
+            "product_name": "Laundry detergent"
           }
         },
-        "button": {
-          "type": "buttons",
+        "review_2": {
+          "type": "review",
           "settings": {
-            "button_label_1": "Shop all",
-            "button_link_1": "shopify://collections/all",
-            "button_style_secondary_1": true,
-            "button_label_2": "",
-            "button_link_2": "",
-            "button_style_secondary_2": false
+            "stars": 5,
+            "title": "Best dishwash ever",
+            "body": "Our old dishwash left my help with dry, cracked skin. That stopped completely after we switched.",
+            "author": "Priya",
+            "product_name": "Dishwash gel"
+          }
+        },
+        "review_3": {
+          "type": "review",
+          "settings": {
+            "stars": 5,
+            "title": "Great product, great packaging",
+            "body": "Very soft on hands with a lovely fragrance, and it feels good to be using far less plastic.",
+            "author": "Sunita",
+            "product_name": "Liquid handwash"
+          }
+        },
+        "review_4": {
+          "type": "review",
+          "settings": {
+            "stars": 5,
+            "title": "Dog friendly",
+            "body": "We switched because chemical floor cleaners were setting off my dog's allergies. No reactions since.",
+            "author": "Rohit S.",
+            "product_name": "Floor cleaner"
+          }
+        },
+        "review_5": {
+          "type": "review",
+          "settings": {
+            "stars": 5,
+            "title": "Sparkling taps again",
+            "body": "Hard water had ruined our bathroom fittings. Two sprays and the scale wipes straight off, no scrubbing.",
+            "author": "Verified buyer",
+            "product_name": "Tap cleaner"
           }
         }
       },
       "block_order": [
-        "heading",
-        "button"
+        "review_1",
+        "review_2",
+        "review_3",
+        "review_4",
+        "review_5"
       ],
       "settings": {
-        "image_overlay_opacity": 40,
-        "image_height": "large",
-        "desktop_content_position": "bottom-center",
-        "show_text_box": false,
-        "image_behavior": "none",
-        "desktop_content_alignment": "center",
-        "color_scheme": "scheme-3",
-        "mobile_content_alignment": "center",
-        "stack_images_on_mobile": false,
-        "show_text_below": false
+        "kicker": "That's what they said",
+        "aggregate_rating": "4.8",
+        "total_reviews": "8,000+",
+        "homes_count": "12 lakh+"
       }
     },
-    "featured_collection": {
-      "type": "featured-collection",
+    "purelane_shop": {
+      "type": "purelane-shop",
       "settings": {
-        "title": "Featured products",
-        "heading_size": "h2",
-        "description": "",
-        "show_description": false,
-        "description_style": "body",
-        "collection": "all",
-        "products_to_show": 8,
-        "columns_desktop": 4,
-        "color_scheme": "scheme-1",
-        "full_width": false,
-        "show_view_all": true,
-        "view_all_style": "solid",
-        "enable_desktop_slider": false,
-        "swipe_on_mobile": false,
-        "image_ratio": "adapt",
-        "image_shape": "default",
-        "show_secondary_image": true,
-        "show_vendor": false,
-        "show_rating": false,
-        "quick_add": "none",
-        "columns_mobile": "2",
-        "padding_top": 44,
-        "padding_bottom": 36
+        "kicker": "Bestsellers",
+        "heading": "Loved by 30,000 homes",
+        "collection": "shop",
+        "products_per_page": 8
       }
+    },
+    "purelane_combos": {
+      "type": "purelane-combos",
+      "settings": {}
+    },
+    "purelane_bundles": {
+      "type": "purelane-bundles",
+      "settings": {}
     }
   },
   "order": [
-    "image_banner",
-    "featured_collection"
+    "purelane_hero",
+    "purelane_reviews",
+    "purelane_shop",
+    "purelane_combos",
+    "purelane_bundles"
   ]
 }

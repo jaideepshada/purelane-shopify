@@ -1,0 +1,36 @@
+<article class="pl-glass pl-card pl-rv">
+  <div class="pl-card__shot">
+    {% if product.metafields.custom.badge_label != blank %}
+      <span class="pl-card__pill">{{ product.metafields.custom.badge_label }}</span>
+    {% endif %}
+    {% if product.featured_image %}
+      {{ product.featured_image | image_url: width: 400 | image_tag: loading: 'lazy', class: 'pl-card__img', alt: product.title }}
+    {% else %}
+      <div class="pl-card__placeholder">
+        {% render 'purelane-icons', name: 'leaf' %}
+      </div>
+    {% endif %}
+  </div>
+  <h4 class="pl-card__title">{{ product.title }}</h4>
+  <div class="pl-card__rate">
+    <b>★ {{ product.metafields.custom.rating | default: '4.8' }}</b>
+    · {{ product.metafields.custom.review_count | default: '0' }} reviews
+  </div>
+  <div class="pl-card__price">
+    {% if product.available %}
+      <strong>₹{{ product.price | divided_by: 100.0 | floor }}</strong>
+      {% if product.compare_at_price > product.price %}
+        <s>₹{{ product.compare_at_price | divided_by: 100.0 | floor }}</s>
+        {% assign discount = product.compare_at_price | minus: product.price | times: 100 | divided_by: product.compare_at_price %}
+        <em>{{ discount }}% off</em>
+      {% endif %}
+    {% else %}
+      <strong class="pl-card__sold-out">Sold out</strong>
+    {% endif %}
+  </div>
+  {% if product.available %}
+    <button type="button" class="pl-btn pl-btn-ghost pl-btn-sm pl-card__atc" data-product-id="{{ product.id }}">Add to cart</button>
+  {% else %}
+    <button type="button" class="pl-btn pl-btn-ghost pl-btn-sm pl-card__atc" disabled>Sold out</button>
+  {% endif %}
+</article>

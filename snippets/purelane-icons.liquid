@@ -1,0 +1,80 @@
+{%- comment -%}
+  Renders an inline SVG icon for Purelane sections.
+
+  Accepts:
+  - name: {String} Icon name (required)
+  - size: {Number|String} Width and height in px (optional, default: 24)
+  - class: {String} Additional CSS classes (optional)
+
+  Usage:
+  {% render 'purelane-icons', name: 'leaf' %}
+  {% render 'purelane-icons', name: 'star', size: 16 %}
+{%- endcomment -%}
+
+{%- assign icon_size = size | default: 24 -%}
+{%- assign icon_class = class | default: '' -%}
+
+{%- case name -%}
+  {%- when 'leaf' -%}
+    <svg width="{{ icon_size }}" height="{{ icon_size }}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"{% if icon_class != blank %} class="{{ icon_class }}"{% endif %}>
+      <path d="M12 21c0-6.5 3.5-11 8-12.5C20 15 16.5 20 12 21Z"/>
+      <path d="M12 21C12 14.5 8.5 10 4 8.5 4 15 7.5 20 12 21Z"/>
+    </svg>
+  {%- when 'shield' -%}
+    <svg width="{{ icon_size }}" height="{{ icon_size }}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"{% if icon_class != blank %} class="{{ icon_class }}"{% endif %}>
+      <path d="M12 3 4.5 6v6.2c0 4.3 3.1 7.6 7.5 8.8 4.4-1.2 7.5-4.5 7.5-8.8V6L12 3Z"/>
+      <path d="m9 12 2.2 2.2L15.4 10"/>
+    </svg>
+  {%- when 'no-chemical' -%}
+    <svg width="{{ icon_size }}" height="{{ icon_size }}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"{% if icon_class != blank %} class="{{ icon_class }}"{% endif %}>
+      <circle cx="12" cy="12" r="8.4"/>
+      <path d="M6.4 17.6 17.6 6.4"/>
+    </svg>
+  {%- when 'arrow-right' -%}
+    <svg width="{{ icon_size }}" height="{{ icon_size }}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"{% if icon_class != blank %} class="{{ icon_class }}"{% endif %}>
+      <path d="M5 12h13m-5-6 6 6-6 6"/>
+    </svg>
+  {%- when 'star' -%}
+    <svg width="{{ icon_size }}" height="{{ icon_size }}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"{% if icon_class != blank %} class="{{ icon_class }}"{% endif %}>
+      <path d="m12 3.6 2.6 5.3 5.8.8-4.2 4.1 1 5.8-5.2-2.8-5.2 2.8 1-5.8L3.6 9.7l5.8-.8Z"/>
+    </svg>
+  {%- when 'check' -%}
+    <svg width="{{ icon_size }}" height="{{ icon_size }}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"{% if icon_class != blank %} class="{{ icon_class }}"{% endif %}>
+      <path d="m5 13 4 4L19 7"/>
+    </svg>
+  {%- when 'verified' -%}
+    <svg width="{{ icon_size }}" height="{{ icon_size }}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"{% if icon_class != blank %} class="{{ icon_class }}"{% endif %}>
+      <path d="m5 13 4 4L19 7"/>
+    </svg>
+  {%- when 'heart' -%}
+    <svg width="{{ icon_size }}" height="{{ icon_size }}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"{% if icon_class != blank %} class="{{ icon_class }}"{% endif %}>
+      <path d="M12 20s-7-4.4-7-9.4A4.1 4.1 0 0 1 12 8a4.1 4.1 0 0 1 7 2.6c0 5-7 9.4-7 9.4Z"/>
+    </svg>
+  {%- when 'truck' -%}
+    <svg width="{{ icon_size }}" height="{{ icon_size }}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"{% if icon_class != blank %} class="{{ icon_class }}"{% endif %}>
+      <path d="M2.6 16.4V7.2h10.2v9.2"/>
+      <path d="M12.8 10.4h4l3.6 3.2v2.8h-7.6"/>
+      <circle cx="6.6" cy="18" r="1.9"/>
+      <circle cx="16.6" cy="18" r="1.9"/>
+    </svg>
+  {%- when 'recycle' -%}
+    <svg width="{{ icon_size }}" height="{{ icon_size }}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"{% if icon_class != blank %} class="{{ icon_class }}"{% endif %}>
+      <path d="M4 8h16v11a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2Z"/>
+      <path d="M4 8 6.5 3h11L20 8M9.5 12h5"/>
+    </svg>
+  {%- when 'globe' -%}
+    <svg width="{{ icon_size }}" height="{{ icon_size }}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"{% if icon_class != blank %} class="{{ icon_class }}"{% endif %}>
+      <circle cx="12" cy="12" r="8.6"/>
+      <path d="M3.4 12h17.2M12 3.4c2.4 2.4 3.6 5.4 3.6 8.6S14.4 18.2 12 20.6c-2.4-2.4-3.6-5.4-3.6-8.6S9.6 5.8 12 3.4Z"/>
+    </svg>
+  {%- when 'dollar' -%}
+    <svg width="{{ icon_size }}" height="{{ icon_size }}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"{% if icon_class != blank %} class="{{ icon_class }}"{% endif %}>
+      <path d="M12 3v18"/>
+      <path d="M16.5 7.2C15.6 6 14 5.4 12 5.4c-2.4 0-4 1.1-4 2.9 0 2 1.7 2.7 4.2 3.3 2.7.6 4.3 1.4 4.3 3.4 0 1.9-1.7 3.1-4.5 3.1-2.2 0-3.8-.7-4.8-2"/>
+    </svg>
+  {%- when 'checkbox' -%}
+    <svg width="{{ icon_size }}" height="{{ icon_size }}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"{% if icon_class != blank %} class="{{ icon_class }}"{% endif %}>
+      <rect x="4" y="4" width="16" height="16" rx="3.4"/>
+      <path d="m8.4 12.2 2.4 2.4 4.8-5"/>
+    </svg>
+{%- endcase -%}
