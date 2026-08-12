@@ -4,7 +4,7 @@
   min-height: 100svh;
   display: flex;
   align-items: flex-end;
-  padding: 150px 0 var(--pl-sec-y);
+  padding: 50px 0 var(--pl-sec-y);
   /* Light background gradient */
   background: linear-gradient(178deg, #fbfffb 0%, #eafaec 24%, #d6f1dc 54%, #bfe8ca 100%);
 }
