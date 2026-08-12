@@ -8,7 +8,7 @@
 
 <section class="pl-hero" aria-label="Hero" data-scene="1">
   <!-- Desktop Badges Rail -->
-  <aside class="pl-hero__badges pl-glass pl-rv" style="transition-delay: 0.6s;">
+  <aside class="pl-hero__badges pl-rv" style="transition-delay: 0.6s;">
     <div class="pl-hero__badge">
       <div class="pl-hero__badge-icon">
         {% render 'purelane-icons', name: 'leaf' %}
@@ -45,9 +45,9 @@
         <i></i>
       </div>
       
-      <p class="pl-lede pl-rv" style="transition-delay: 0.2s;">
+      <div class="pl-lede pl-rv" style="transition-delay: 0.2s;">
         {{ section.settings.subheading }}
-      </p>
+      </div>
 
       <div class="pl-hero__cta pl-rv" style="transition-delay: 0.3s;">
         <a href="{{ section.settings.button_link }}" class="pl-btn pl-btn-primary">
@@ -79,91 +79,104 @@
     </div>
 
     <div class="pl-hero__product pl-rv" style="transition-delay: 0.5s;">
-      <div class="rot" id="rot" aria-hidden="true">
-        <div class="frame">
-          <img src="{{ 'purelane-bottle-kbtl.svg' | asset_url }}" class="pl-hero__bottle on" data-name="Kitchen cleaner" data-note="Foam lifts grease, no scrubbing" alt="" />
-          <img src="{{ 'purelane-bottle-tbtl.svg' | asset_url }}" class="pl-hero__bottle" data-name="Tap &amp; limescale" data-note="Melts hard water stains" alt="" />
-          <img src="{{ 'purelane-bottle-mbtl.svg' | asset_url }}" class="pl-hero__bottle" data-name="Laundry detergent" data-note="Tough on odour, soft on fabric" alt="" />
-          <img src="{{ 'purelane-bottle-kitchen.svg' | asset_url }}" class="pl-hero__bottle" data-name="Dishwash gel" data-note="Cuts grease, kind to hands" alt="" />
-          <img src="{{ 'purelane-bottle-tap.svg' | asset_url }}" class="pl-hero__bottle" data-name="Toilet cleaner" data-note="Kills 99.9% of germs" alt="" />
-        </div>
-        <div class="cap">
-          <b>Kitchen cleaner</b>
-          <span>Foam lifts grease, no scrubbing</span>
-        </div>
-        <div class="dots">
-          <i class="on"></i><i></i><i></i><i></i><i></i>
-        </div>
-      </div>
-      
-      <div class="pl-hero__ptag">
-        {%- if hero_product -%}
-          <span class="pl-hero__ptag-label">Best-seller combo</span>
-          <div class="pl-hero__ptag-val">
-            <strong>₹{{ hero_product.price | money_without_currency | strip | replace: '.00', '' }}</strong>
-            {%- if hero_product.compare_at_price > hero_product.price -%}
-              <s>₹{{ hero_product.compare_at_price | money_without_currency | strip | replace: '.00', '' }}</s>
-            {%- endif -%}
+      <style>
+        .p-kbtl { background-image: url('{{ "purelane-bottle-kbtl.svg" | asset_url }}'); aspect-ratio: 0.3541; }
+        .p-tbtl { background-image: url('{{ "purelane-bottle-tbtl.svg" | asset_url }}'); aspect-ratio: 0.3541; }
+        .p-mbtl { background-image: url('{{ "purelane-bottle-mbtl.svg" | asset_url }}'); aspect-ratio: 0.3541; }
+      </style>
+      <div class="hero-prod" id="heroProd">
+        <div class="hstage" id="hstage">
+          <div class="hslide hs1 on" data-n="1">
+            <span class="hp p-kbtl a d1" role="img" aria-label="Purelane foaming kitchen cleaner spray bottle"></span>
+            <div class="pl-glass-2 ptag">
+              <span class="lbl">Single bottle</span>
+              <span class="val"><strong>&#8377;200</strong><s>&#8377;299</s></span>
+              <span class="cut">33% off</span>
+            </div>
           </div>
-          {%- if hero_product.compare_at_price > hero_product.price -%}
-            {%- assign discount_amount = hero_product.compare_at_price | minus: hero_product.price | money_without_currency | strip | replace: '.00', '' -%}
-            <span class="pl-hero__ptag-cut">SAVE ₹{{ discount_amount }}</span>
-          {%- endif -%}
-        {%- else -%}
-          <span class="pl-hero__ptag-label">Any 3 products</span>
-          <div class="pl-hero__ptag-val">
-            <strong>₹499</strong>
-            <s>₹897</s>
+          <div class="hslide hs2" data-n="2">
+            <span class="hp p-tbtl a d1" role="img" aria-label="Purelane tap cleaner and limescale remover spray bottle"></span>
+            <span class="hp p-kbtl b d2" role="img" aria-label="Purelane foaming kitchen cleaner spray bottle"></span>
+            <div class="pl-glass-2 ptag">
+              <span class="lbl">Any 2 products</span>
+              <span class="val"><strong>&#8377;349</strong><s>&#8377;598</s></span>
+              <span class="cut">Save &#8377;249</span>
+            </div>
           </div>
-          <span class="pl-hero__ptag-cut">Save ₹398</span>
-        {%- endif -%}
+          <div class="hslide hs3" data-n="3">
+            <span class="hp p-tbtl a d1" role="img" aria-label="Purelane tap cleaner and limescale remover spray bottle"></span>
+            <span class="hp p-mbtl b d2" role="img" aria-label="Purelane copper, bronze and brass cleaner pump bottle"></span>
+            <span class="hp p-kbtl c d3" role="img" aria-label="Purelane foaming kitchen cleaner spray bottle"></span>
+            <div class="pl-glass-2 ptag">
+              <span class="lbl">Any 3 products</span>
+              <span class="val"><strong>&#8377;499</strong><s>&#8377;897</s></span>
+              <span class="cut">Save &#8377;398</span>
+            </div>
+          </div>
+        </div>
+        <div class="hdots" id="hdots">
+          <button type="button" class="on" aria-label="Show 1 product"></button>
+          <button type="button" class="" aria-label="Show 2 products"></button>
+          <button type="button" class="" aria-label="Show 3 products"></button>
+        </div>
       </div>
     </div>
   </div>
 </section>
 
 <script>
-  document.addEventListener('DOMContentLoaded', () => {
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('in');
-          observer.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.1 });
-
-    document.querySelectorAll('#shopify-section-{{ section.id }} .pl-rv').forEach(el => {
-      observer.observe(el);
-    });
-
-    const rot = document.getElementById('rot');
-    if (rot) {
-      const rimgs = Array.from(rot.querySelectorAll('.frame .pl-hero__bottle'));
-      const rdots = Array.from(rot.querySelectorAll('.dots i'));
-      const rcapB = rot.querySelector('.cap b');
-      const rcapS = rot.querySelector('.cap span');
-      let ri = 0, rtimer = null;
-      
-      function rstep() {
-        rimgs[ri].classList.remove('on');
-        if (rdots[ri]) rdots[ri].classList.remove('on');
-        ri = (ri + 1) % rimgs.length;
-        rimgs[ri].classList.add('on');
-        if (rdots[ri]) rdots[ri].classList.add('on');
-        rcapB.innerHTML = rimgs[ri].getAttribute('data-name');
-        rcapS.textContent = rimgs[ri].getAttribute('data-note');
-      }
-      
-      const rio = new IntersectionObserver((es) => {
-        es.forEach(e => {
-          if (e.isIntersecting && !rtimer) rtimer = setInterval(rstep, 2900);
-          else if (!e.isIntersecting && rtimer) { clearInterval(rtimer); rtimer = null; }
+  (function() {
+    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const revs = document.querySelectorAll('#shopify-section-{{ section.id }} .pl-rv');
+    
+    if ('IntersectionObserver' in window && !reduce) {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('in');
+            observer.unobserve(entry.target);
+          }
         });
-      }, { threshold: 0.25 });
-      rio.observe(rot);
+      }, { rootMargin: '0px 0px -12% 0px', threshold: 0.12 });
+
+      revs.forEach(el => observer.observe(el));
+    } else {
+      revs.forEach(el => el.classList.add('in'));
     }
-  });
+
+    const hstage = document.getElementById('hstage');
+    if (hstage) {
+      const hs = Array.from(hstage.querySelectorAll('.hslide'));
+      const hd = Array.from(document.querySelectorAll('#hdots button'));
+      let hi = 0, htimer = null;
+      function hgo(n) {
+        hi = (n + hs.length) % hs.length;
+        hs.forEach((s, i) => s.classList.toggle('on', i === hi));
+        hd.forEach((d, i) => d.classList.toggle('on', i === hi));
+      }
+      function hplay() { if (!htimer) htimer = setInterval(() => hgo(hi + 1), 3800); }
+      function hstop() { if (htimer) { clearInterval(htimer); htimer = null; } }
+      hd.forEach((d, i) => {
+        d.addEventListener('click', () => { hstop(); hgo(i); hplay(); });
+      });
+      hstage.addEventListener('mouseenter', hstop);
+      hstage.addEventListener('mouseleave', hplay);
+      const hio = new IntersectionObserver((es) => {
+        es.forEach(e => { e.isIntersecting ? hplay() : hstop(); });
+      }, { threshold: 0.2 });
+      hio.observe(hstage);
+    }
+
+    const prod = document.getElementById('heroProd');
+    if (prod && typeof prod.animate === 'function') {
+      prod.animate(
+        [{ filter: 'drop-shadow(0 18px 36px rgba(0,74,66,.16))' },
+         { filter: 'drop-shadow(0 24px 44px rgba(0,74,66,.24))' },
+         { filter: 'drop-shadow(0 18px 36px rgba(0,74,66,.16))' }],
+        { duration: 7000, iterations: Infinity, easing: 'ease-in-out' }
+      );
+    }
+  })();
 </script>
 
 {% schema %}

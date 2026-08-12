@@ -1,0 +1,141 @@
+{%- style -%}
+.pl-hdr {
+  position: fixed; top: 38px; left: 0; right: 0; z-index: 50; padding: 0 14px;
+  transition: top .4s ease;
+}
+.pl-hdr.up { top: 10px; }
+.pl-navpill {
+  max-width: var(--pl-maxw); margin: 0 auto; display: flex; align-items: center; gap: 18px;
+  padding: 10px 14px; border-radius: 999px;
+  background: linear-gradient(158deg, rgba(255,255,255,0.66), rgba(236,230,247,0.44));
+  border: 1px solid rgba(75,58,143,0.13);
+  box-shadow: 0 16px 38px rgba(58,44,112,0.10), inset 0 1px 0 rgba(255,255,255,0.86);
+  backdrop-filter: blur(12px) saturate(130%);
+  -webkit-backdrop-filter: blur(12px) saturate(130%);
+  color: var(--pl-paper-2);
+}
+.pl-brand { display: flex; align-items: center; gap: 11px; flex: 0 0 auto; text-decoration: none; opacity: 0.65; transition: opacity 0.3s ease; }
+.pl-brand:hover { opacity: 1; }
+.pl-brand .mark {
+  width: 40px; height: 40px; border-radius: 50%; display: grid; place-items: center; flex: 0 0 auto;
+  background: linear-gradient(150deg, rgba(201,118,29,.20), rgba(75,58,143,.14));
+  border: 1px solid rgba(75,58,143,.18);
+}
+.pl-brand .mark svg { width: 23px; height: 23px; color: #b8701c !important; }
+.pl-brand .txt { line-height: 1.05; }
+.pl-brand .n1 {
+  display: block; font-family: 'Outfit', sans-serif; font-weight: 800; font-size: 16.5px;
+  line-height: 1.06; letter-spacing: .02em; text-transform: uppercase; color: var(--pl-surface);
+}
+.pl-brand .n2 {
+  display: block; font-size: 8.5px; font-weight: 600; line-height: 1.3;
+  letter-spacing: .28em; text-transform: uppercase; color: var(--pl-paper-3);
+}
+.pl-nav { display: none; gap: 26px; margin: 0 auto; font-size: 13.5px; font-weight: 500; }
+.pl-nav a { color: var(--pl-paper-2); padding: 6px 0; position: relative; transition: .3s; text-decoration: none; }
+.pl-nav a::after {
+  content: ""; position: absolute; left: 0; right: 100%; bottom: 0;
+  height: 1.5px; background: var(--pl-accent); transition: right .35s ease;
+}
+.pl-nav a:hover { color: var(--pl-surface); }
+.pl-nav a:hover::after { right: 0; }
+.pl-navtools { display: flex; align-items: center; gap: 4px; margin-left: auto; }
+.pl-ico {
+  width: 38px; height: 38px; border-radius: 50%; display: grid; place-items: center;
+  color: var(--pl-paper-2); transition: .3s; position: relative; text-decoration: none;
+}
+.pl-ico:hover { background: rgba(236,230,247,.14); color: var(--pl-surface); }
+.pl-ico svg { width: 18px; height: 18px; }
+.pl-dot {
+  position: absolute; top: 5px; right: 5px; min-width: 16px; height: 16px; border-radius: 999px;
+  background: var(--pl-accent-2); color: #08211a; font-size: 9.5px; font-weight: 800;
+  display: grid; place-items: center; padding: 0 4px;
+}
+.pl-burger { display: grid; }
+@media(max-width:600px) {
+  .pl-ico.hide-s { display: none; }
+  .pl-brand .mark { width: 34px; height: 34px; }
+  .pl-brand .n1 { font-size: 14.5px; }
+  .pl-brand .n2 { font-size: 7.6px; letter-spacing: .2em; }
+  .pl-navpill { gap: 10px; padding: 8px 10px; }
+}
+@media(min-width:1024px) {
+  .pl-nav { display: flex; }
+  .pl-burger { display: none; }
+}
+{%- endstyle -%}
+
+<header class="pl-hdr" id="hdr">
+  <div class="pl-navpill">
+    <a class="pl-brand" href="{{ routes.root_url }}">
+      <span class="mark">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="color:#b8701c">
+          <path d="M12 3 20.5 8v8L12 21 3.5 16V8L12 3Z"/>
+          <path d="M12 12 20.5 8M12 12v9M12 12 3.5 8"/>
+        </svg>
+      </span>
+      <span class="txt">
+        <span class="n1">{{ shop.name }}</span>
+        <span class="n2">Clean, simply</span>
+      </span>
+    </a>
+    
+    <nav class="pl-nav" aria-label="Main" style="font-family: 'Inter', sans-serif;">
+      <a href="#top">Home</a>
+      <a href="#ingredients">Ingredients</a>
+      <a href="#how">How it works</a>
+      <a href="#shop">Shop</a>
+      <a href="#bundles">Bundles</a>
+    </nav>
+    
+    <div class="pl-navtools">
+      <a href="{{ routes.search_url }}" class="pl-ico hide-s" aria-label="Search">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+      </a>
+      {%- if shop.customer_accounts_enabled -%}
+        <a href="{%- if customer -%}{{ routes.account_url }}{%- else -%}{{ routes.account_login_url }}{%- endif -%}" class="pl-ico hide-s" aria-label="Account">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+        </a>
+      {%- endif -%}
+      <a href="{{ routes.cart_url }}" class="pl-ico" id="cart-icon-bubble" aria-label="Cart">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="8" cy="21" r="1"/><circle cx="19" cy="21" r="1"/><path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"/></svg>
+        {%- if cart.item_count > 0 -%}
+          <span class="pl-dot">{{ cart.item_count }}</span>
+        {%- endif -%}
+      </a>
+      <button type="button" class="pl-ico pl-burger" aria-label="Menu">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><line x1="4" x2="20" y1="12" y2="12"/><line x1="4" x2="20" y1="6" y2="6"/><line x1="4" x2="20" y1="18" y2="18"/></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const hdr = document.getElementById('hdr');
+    if (hdr) {
+      window.addEventListener('scroll', () => {
+        hdr.classList.toggle('up', window.scrollY > 90);
+      }, { passive: true });
+    }
+  });
+</script>
+
+{% schema %}
+{
+  "name": "Purelane Header",
+  "settings": [
+    {
+      "type": "link_list",
+      "id": "menu",
+      "default": "main-menu",
+      "label": "Menu"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Purelane Header"
+    }
+  ]
+}
+{% endschema %}

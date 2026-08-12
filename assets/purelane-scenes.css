@@ -1,8 +1,8 @@
 /* ---------- scenes: sunlit shallow water ---------- */
-.scenes{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden;background:#eee7fb}
+.scenes{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden;background:linear-gradient(178deg,#fbfffb 0%,#eafaec 24%,#d6f1dc 54%,#bfe8ca 100%)}
 .scene{position:absolute;inset:0;opacity:0;transition:opacity 1.5s ease}
 .scene.on{opacity:1}
-.s1{background:linear-gradient(178deg,#fbfffb 0%,#eafaec 24%,#d6f1dc 54%,#bfe8ca 100%)}
+.s1{background:linear-gradient(178deg,#fbfffb 0%,#eafaec 24%,#d6f1dc 54%,#bfe8ca 100%);opacity:1 !important}
 .s2{background:linear-gradient(178deg,#f6fdf7 0%,#e3f7e7 26%,#cbedd4 58%,#b2e2c2 100%)}
 .s3{background:linear-gradient(178deg,#f0fbf2 0%,#d9f2df 28%,#bde6c8 60%,#a2d9b6 100%)}
 .s4{background:linear-gradient(178deg,#e9f8ec 0%,#cdedd6 30%,#addcbe 62%,#8ecdaa 100%)}

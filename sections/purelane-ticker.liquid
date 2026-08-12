@@ -1,0 +1,83 @@
+{%- style -%}
+.pl-ticker {
+  background: rgba(255,255,255,.74);
+  color: var(--pl-paper-2);
+  border-bottom: 1px solid rgba(75,58,143,.12);
+  font-size: 11.5px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: .1em;
+  white-space: nowrap;
+  overflow: hidden;
+  position: relative;
+  z-index: 100;
+  line-height: 37px;
+}
+.pl-ticker__track {
+  display: inline-flex;
+  gap: 40px;
+  padding: 0 20px;
+  animation: pl-tick {{ section.settings.speed }}s linear infinite;
+}
+.pl-ticker b {
+  color: #4f7d10;
+  font-weight: 700;
+}
+@keyframes pl-tick {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+{%- endstyle -%}
+
+<div class="pl-ticker" aria-hidden="true">
+  <div class="pl-ticker__track">
+    {%- for i in (1..2) -%}
+      {%- for block in section.blocks -%}
+        <span>{{ block.settings.text }}</span>
+      {%- endfor -%}
+    {%- endfor -%}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Purelane Ticker",
+  "settings": [
+    {
+      "type": "range",
+      "id": "speed",
+      "min": 10,
+      "max": 60,
+      "step": 1,
+      "unit": "s",
+      "label": "Scroll Speed",
+      "default": 30
+    }
+  ],
+  "blocks": [
+    {
+      "type": "message",
+      "name": "Message",
+      "settings": [
+        {
+          "type": "inline_richtext",
+          "id": "text",
+          "label": "Text",
+          "default": "Free shipping <b>on every bundle across India</b>"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Purelane Ticker",
+      "blocks": [
+        { "type": "message" },
+        { "type": "message", "settings": { "text": "100% plant-based <b>and non-toxic</b>" } },
+        { "type": "message", "settings": { "text": "Loved by <b>30,000+ happy homes</b>" } },
+        { "type": "message", "settings": { "text": "Buy 3 <b>at flat ₹499</b>" } }
+      ]
+    }
+  ]
+}
+{% endschema %}
