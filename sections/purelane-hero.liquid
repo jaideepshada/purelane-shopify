@@ -79,9 +79,22 @@
     </div>
 
     <div class="pl-hero__product pl-rv" style="transition-delay: 0.5s;">
-      <img src="{{ 'purelane-bottle-tbtl.svg' | asset_url }}" alt="" class="pl-hero__bottle pl-hero__bottle--a" />
-      <img src="{{ 'purelane-bottle-kbtl.svg' | asset_url }}" alt="" class="pl-hero__bottle pl-hero__bottle--c" />
-      <img src="{{ 'purelane-bottle-mbtl.svg' | asset_url }}" alt="" class="pl-hero__bottle pl-hero__bottle--b" />
+      <div class="rot" id="rot" aria-hidden="true">
+        <div class="frame">
+          <img src="{{ 'purelane-bottle-kbtl.svg' | asset_url }}" class="pl-hero__bottle on" data-name="Kitchen cleaner" data-note="Foam lifts grease, no scrubbing" alt="" />
+          <img src="{{ 'purelane-bottle-tbtl.svg' | asset_url }}" class="pl-hero__bottle" data-name="Tap &amp; limescale" data-note="Melts hard water stains" alt="" />
+          <img src="{{ 'purelane-bottle-mbtl.svg' | asset_url }}" class="pl-hero__bottle" data-name="Laundry detergent" data-note="Tough on odour, soft on fabric" alt="" />
+          <img src="{{ 'purelane-bottle-kitchen.svg' | asset_url }}" class="pl-hero__bottle" data-name="Dishwash gel" data-note="Cuts grease, kind to hands" alt="" />
+          <img src="{{ 'purelane-bottle-tap.svg' | asset_url }}" class="pl-hero__bottle" data-name="Toilet cleaner" data-note="Kills 99.9% of germs" alt="" />
+        </div>
+        <div class="cap">
+          <b>Kitchen cleaner</b>
+          <span>Foam lifts grease, no scrubbing</span>
+        </div>
+        <div class="dots">
+          <i class="on"></i><i></i><i></i><i></i><i></i>
+        </div>
+      </div>
       
       <div class="pl-hero__ptag">
         {%- if hero_product -%}
@@ -123,6 +136,33 @@
     document.querySelectorAll('#shopify-section-{{ section.id }} .pl-rv').forEach(el => {
       observer.observe(el);
     });
+
+    const rot = document.getElementById('rot');
+    if (rot) {
+      const rimgs = Array.from(rot.querySelectorAll('.frame .pl-hero__bottle'));
+      const rdots = Array.from(rot.querySelectorAll('.dots i'));
+      const rcapB = rot.querySelector('.cap b');
+      const rcapS = rot.querySelector('.cap span');
+      let ri = 0, rtimer = null;
+      
+      function rstep() {
+        rimgs[ri].classList.remove('on');
+        if (rdots[ri]) rdots[ri].classList.remove('on');
+        ri = (ri + 1) % rimgs.length;
+        rimgs[ri].classList.add('on');
+        if (rdots[ri]) rdots[ri].classList.add('on');
+        rcapB.innerHTML = rimgs[ri].getAttribute('data-name');
+        rcapS.textContent = rimgs[ri].getAttribute('data-note');
+      }
+      
+      const rio = new IntersectionObserver((es) => {
+        es.forEach(e => {
+          if (e.isIntersecting && !rtimer) rtimer = setInterval(rstep, 2900);
+          else if (!e.isIntersecting && rtimer) { clearInterval(rtimer); rtimer = null; }
+        });
+      }, { threshold: 0.25 });
+      rio.observe(rot);
+    }
   });
 </script>
 
