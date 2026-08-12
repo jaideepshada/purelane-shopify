@@ -31,11 +31,6 @@
 
   <div class="pl-hero__grid">
     <div class="pl-hero__copy">
-      <div class="pl-hero__rule pl-rv">
-        {% render 'purelane-icons', name: 'leaf' %}
-        <i></i>
-      </div>
-      
       <h1 class="pl-d1 pl-rv" style="transition-delay: 0.1s;">
         {%- if section.settings.heading_highlight != blank -%}
           {{ section.settings.heading | replace: section.settings.heading_highlight, '<span class="pl-lime">' | append: section.settings.heading_highlight | append: '</span>' }}
@@ -43,6 +38,12 @@
           {{ section.settings.heading }}
         {%- endif -%}
       </h1>
+
+      <div class="pl-hero__rule pl-rv" style="transition-delay: 0.15s;">
+        <i></i>
+        {% render 'purelane-icons', name: 'leaf' %}
+        <i></i>
+      </div>
       
       <p class="pl-lede pl-rv" style="transition-delay: 0.2s;">
         {{ section.settings.subheading }}

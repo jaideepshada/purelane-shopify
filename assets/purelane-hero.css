@@ -44,13 +44,13 @@
   display: flex;
   align-items: center;
   gap: 13px;
-  margin: 0 0 20px;
+  margin: 12px 0 20px;
   max-width: 270px;
 }
 .pl-hero__rule i {
   height: 1px;
   flex: 1;
-  background: linear-gradient(90deg, rgba(75,58,143,.34), transparent);
+  background: linear-gradient(90deg, transparent, rgba(75,58,143,.34), transparent);
 }
 .pl-hero__rule svg { width: 16px; height: 16px; color: var(--pl-accent); flex: 0 0 auto; }
 
