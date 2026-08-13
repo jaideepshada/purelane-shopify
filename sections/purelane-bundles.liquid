@@ -4,24 +4,25 @@
 
 <section class="pl-sec" id="bundles" data-scene="3">
   <div class="pl-wrap">
-    <div class="pl-glass pl-sec-pad pl-rv">
-    
-    <div class="pl-panel-head pl-rv">
-      {%- if section.settings.kicker != blank -%}
-        <span class="pl-kicker">{{ section.settings.kicker }}</span>
-      {%- endif -%}
-      {%- if section.settings.heading != blank -%}
-        <h2 class="pl-d2" style="margin-top:12px; margin-bottom:16px;">{{ section.settings.heading }}</h2>
-      {%- endif -%}
-      <div class="pl-rule" style="margin-bottom:16px;">
-        <i></i>{% render 'purelane-icons', name: 'leaf', size: 16 %}<i></i>
+
+    <div class="pl-glass pl-sec-pad pl-rv pl-bundles__head" style="margin-bottom: 14px;">
+      <div class="pl-panel-head">
+        {%- if section.settings.kicker != blank -%}
+          <span class="pl-kicker">{{ section.settings.kicker }}</span>
+        {%- endif -%}
+        {%- if section.settings.heading != blank -%}
+          <h2 class="pl-d2" style="margin-top:12px; margin-bottom:16px;">{{ section.settings.heading }}</h2>
+        {%- endif -%}
+        <div class="pl-rule" style="margin-bottom:16px;">
+          <i></i>{% render 'purelane-icons', name: 'leaf', size: 16 %}<i></i>
+        </div>
+        {%- if section.settings.subheading != blank -%}
+          <p class="pl-lede" style="margin: 0 auto;">{{ section.settings.subheading }}</p>
+        {%- endif -%}
       </div>
-      {%- if section.settings.subheading != blank -%}
-        <p class="pl-lede" style="margin: 0 auto;">{{ section.settings.subheading }}</p>
-      {%- endif -%}
     </div>
 
-    <div class="pl-tiers">
+    <div class="pl-tiers pl-rv" style="transition-delay:.15s;">
       {%- for block in section.blocks -%}
         {%- assign delay_class = '' -%}
         {%- if forloop.index == 2 -%}{%- assign delay_class = 'pl-rv-d2' -%}{%- endif -%}
@@ -86,7 +87,6 @@
         </div>
       {%- endfor -%}
     </div>
-  </div>
   </div>
 </section>
 
