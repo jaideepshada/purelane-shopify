@@ -25,6 +25,15 @@
   --pl-maxw: 1180px;
   --pl-sec-y: 34px;
   --pl-ease: cubic-bezier(0.2, 0.7, 0.2, 1);
+
+  /* Override Dawn's default global fonts */
+  --font-body-family: 'Inter', system-ui, -apple-system, sans-serif !important;
+  --font-heading-family: 'Outfit', system-ui, sans-serif !important;
+}
+
+body {
+  letter-spacing: normal !important;
+  line-height: 1.62 !important;
 }
 
 @media (max-width: 760px) {
@@ -37,39 +46,31 @@
    Typography
    ========================================================================== */
 .pl-d1, .pl-d2, .pl-d3, .pl-d4 {
-  font-family: 'Outfit', sans-serif;
+  font-family: 'Outfit', system-ui, sans-serif;
   text-transform: uppercase;
   letter-spacing: -0.018em;
+  font-weight: 800;
+  color: var(--pl-surface);
   margin: 0;
 }
 
 .pl-d1 {
   font-size: clamp(48px, 8.6vw, 112px);
-  font-weight: 800;
   line-height: 0.87;
-}
-
-@media (max-width: 760px) {
-  .pl-d1 {
-    font-size: clamp(44px, 13.5vw, 64px);
-  }
 }
 
 .pl-d2 {
   font-size: clamp(30px, 4.6vw, 54px);
-  font-weight: 800;
   line-height: 0.94;
 }
 
 .pl-d3 {
   font-size: clamp(21px, 2.5vw, 30px);
-  font-weight: 700;
   line-height: 1.04;
 }
 
 .pl-d4 {
   font-size: clamp(16px, 1.6vw, 19px);
-  font-weight: 700;
   line-height: 1.14;
 }
 
@@ -82,10 +83,10 @@
   font-size: clamp(15px, 1.35vw, 17.5px);
   color: var(--pl-paper-2);
   max-width: 44ch;
-  margin: 0;
+  margin: 0 auto;
   font-family: 'Inter', sans-serif;
   line-height: 1.62;
-  font-weight: 500;
+  font-weight: 400;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -207,6 +208,7 @@ body, html {
 }
 .pl-btn-ghost:hover {
   background: rgba(255, 255, 255, 0.9);
+  transform: translateY(-2px);
 }
 
 .pl-btn-sm {
@@ -266,19 +268,36 @@ body, html {
   text-align: center;
   margin-bottom: 26px;
 }
+.pl-panel-head .pl-d2 {
+  margin: 12px 0;
+}
 
 .pl-rule {
   display: flex;
   align-items: center;
   gap: 13px;
   justify-content: center;
+  margin: 0 auto 20px;
+  max-width: 270px;
+}
+.pl-panel-head .pl-rule {
+  margin: 0 auto;
+  max-width: 240px;
 }
 .pl-rule::before,
 .pl-rule::after {
   content: "";
   height: 1px;
   flex: 1;
-  background: var(--pl-g-line);
+}
+.pl-rule::before {
+  background: linear-gradient(90deg, transparent, rgba(75, 58, 143, 0.34));
+}
+.pl-rule::after {
+  background: linear-gradient(90deg, rgba(75, 58, 143, 0.34), transparent);
+}
+.pl-rule svg {
+  color: #c48c1e;
 }
 
 /* ==========================================================================

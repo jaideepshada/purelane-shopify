@@ -15,7 +15,7 @@
         <i></i>{% render 'purelane-icons', name: 'leaf' %}<i></i>
       </div>
       {% if section.settings.lede != blank %}
-        <p class="pl-lede pl-rv" style="transition-delay: .2s;">{{ section.settings.lede }}</p>
+        <p class="pl-lede pl-rv" style="margin: 14px auto 0; transition-delay: .2s;">{{ section.settings.lede }}</p>
       {% endif %}
     </div>
 
@@ -30,10 +30,22 @@
               <div class="pl-combo__flag">{{ block.settings.flag_text }}</div>
             {% endif %}
             
+            
             <div class="pl-stack">
               {% if block.settings.product_1_title != blank %}
+                {% assign icon1 = block.settings.product_1_icon %}
+                {% if icon1 == blank %}
+                  {% assign t = block.settings.product_1_title | downcase %}
+                  {% if t contains 'grease' %}{% assign icon1 = 'kitchen' %}
+                  {% elsif t contains 'odour' or t contains 'laundry' %}{% assign icon1 = 'laundry' %}
+                  {% elsif t contains 'germ' and block.settings.name == 'Complete home bundle' %}{% assign icon1 = 'floor' %}
+                  {% elsif t contains 'germ' or t contains 'limescale' %}{% assign icon1 = 'toilet' %}
+                  {% elsif t contains 'scum' %}{% assign icon1 = 'eraser' %}
+                  {% elsif t contains 'hand' %}{% assign icon1 = 'handwash' %}
+                  {% else %}{% assign icon1 = 'tap' %}{% endif %}
+                {% endif %}
                 <div class="pl-stack__item">
-                  <div class="pl-stack__img">{% render 'purelane-icons', name: 'leaf' %}</div>
+                  <div class="pl-pimg pl-p-{{ icon1 }}"></div>
                   <span>{{ block.settings.product_1_title }}</span>
                 </div>
               {% endif %}
@@ -42,9 +54,18 @@
                 <div class="pl-stack__plus">+</div>
                 <div class="pl-stack__item">
                   {% if block.settings.product_2_is_placeholder %}
-                    <div class="pl-stack__tile">{% render 'purelane-icons', name: 'leaf' %}</div>
+                    <div class="pl-stack__tile"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" style="width:32px;height:32px;margin:16px auto;"><path d="M12 21c0-6.5 3.5-11 8-12.5C20 15 16.5 20 12 21Z"/><path d="M12 21C12 14.5 8.5 10 4 8.5 4 15 7.5 20 12 21Z"/></svg></div>
                   {% else %}
-                    <div class="pl-stack__img">{% render 'purelane-icons', name: 'leaf' %}</div>
+                    {% assign icon2 = block.settings.product_2_icon %}
+                    {% if icon2 == blank %}
+                      {% assign t = block.settings.product_2_title | downcase %}
+                      {% if t contains 'dish' %}{% assign icon2 = 'dish' %}
+                      {% elsif t contains 'floor' or t contains 'germ' %}{% assign icon2 = 'floor' %}
+                      {% elsif t contains 'limescale' %}{% assign icon2 = 'toilet' %}
+                      {% elsif t contains 'tap' or t contains 'water' %}{% assign icon2 = 'tap' %}
+                      {% else %}{% assign icon2 = 'tap' %}{% endif %}
+                    {% endif %}
+                    <div class="pl-pimg pl-p-{{ icon2 }}"></div>
                   {% endif %}
                   {% if block.settings.product_2_title != blank %}
                     <span>{{ block.settings.product_2_title }}</span>
@@ -55,7 +76,16 @@
               {% if block.settings.product_3_title != blank %}
                 <div class="pl-stack__plus">+</div>
                 <div class="pl-stack__item">
-                  <div class="pl-stack__img">{% render 'purelane-icons', name: 'leaf' %}</div>
+                  {% assign icon3 = block.settings.product_3_icon %}
+                  {% if icon3 == blank %}
+                    {% assign t = block.settings.product_3_title | downcase %}
+                    {% if t contains 'stain' or t contains 'tap' %}{% assign icon3 = 'tap' %}
+                    {% elsif t contains 'machine' %}{% assign icon3 = 'wm' %}
+                    {% elsif t contains 'hand' %}{% assign icon3 = 'handwash' %}
+                    {% elsif t contains 'scum' %}{% assign icon3 = 'eraser' %}
+                    {% else %}{% assign icon3 = 'tap' %}{% endif %}
+                  {% endif %}
+                  <div class="pl-pimg pl-p-{{ icon3 }}"></div>
                   <span>{{ block.settings.product_3_title }}</span>
                 </div>
               {% endif %}
@@ -80,10 +110,10 @@
                 <em>Save ₹{{ block.settings.save_amount }}</em>
               {% endif %}
             </div>
-            <span class="pl-combo__fine">Taxes included.</span>
+            <span class="pl-combo__fine">Inclusive of all taxes &middot; COD available</span>
             
-            <a href="/collections/all" class="pl-btn pl-btn--s">
-              <span>View Combo</span>
+            <a href="#bundles" class="pl-btn {% if block.settings.is_hero %}pl-btn-primary{% else %}pl-btn-ghost{% endif %}">
+              Shop bundle <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="width: 16px; height: 16px;"><path d="M5 12h13m-5-6 6 6-6 6"/></svg>
             </a>
           </div>
         </div>
@@ -91,12 +121,12 @@
     </div>
 
     <div class="pl-swipecue pl-rv" style="transition-delay: .4s;">
-      {% render 'purelane-icons', name: 'arrow' %}
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="width: 16px; height: 16px;"><path d="M5 12h13m-5-6 6 6-6 6"/></svg>
       <span>Swipe for more combos</span>
     </div>
     
     <p class="pl-railnote pl-rv" style="transition-delay: .45s;">
-      Looking for something specific? Mix and match products with our custom bundle picker and save up to 25%.
+      Tapping "Shop bundle" opens the bundle picker with these products already added. You can still swap anything before you pay.
     </p>
     
   </div>

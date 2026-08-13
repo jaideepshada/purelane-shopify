@@ -15,19 +15,18 @@
 
 <section class="pl-revband pl-revband--{{ section.id }} pl-rv" aria-label="Customer Reviews" data-scene="1">
   <div class="pl-wrap">
-    {% if section.settings.kicker != blank %}
-      <div class="pl-kicker" style="text-align: center;">{{ section.settings.kicker }}</div>
-    {% endif %}
-
     <div class="pl-revhead">
-      <div class="pl-revhead__agg">
+      {% if section.settings.kicker != blank %}
+        <span class="pl-kicker">{{ section.settings.kicker }}</span>
+      {% endif %}
+      <span class="pl-revhead__agg">
         <span class="pl-revhead__stars" aria-hidden="true">★★★★★</span>
         <b>{{ section.settings.aggregate_rating }}</b>
-        <span>from {{ section.settings.total_reviews }} reviews</span>
-      </div>
-      <div class="pl-revhead__agg">
-        <span>Loved by {{ section.settings.homes_count }} homes</span>
-      </div>
+        from {{ section.settings.total_reviews }} reviews
+      </span>
+      <span class="pl-revhead__agg">
+        Loved by <b>{{ section.settings.homes_count }}</b> homes
+      </span>
     </div>
   </div>
 

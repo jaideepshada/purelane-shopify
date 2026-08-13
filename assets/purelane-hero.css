@@ -38,10 +38,19 @@
   overflow: visible;
 }
 
-.pl-hero__copy { max-width: 600px; position: relative; z-index: 3; }
+.pl-hero__copy { 
+  max-width: 600px; 
+  position: relative; 
+  z-index: 3; 
+  text-align: left;
+}
 .pl-hero h1 { 
   margin-bottom: 20px; 
+  text-align: left;
   text-shadow: 0 6px 40px rgba(0,0,0,0.15);
+}
+.pl-hero .pl-lede {
+  margin: 0 0 26px;
 }
 
 /* Rule divider */
@@ -49,13 +58,13 @@
   display: flex;
   align-items: center;
   gap: 13px;
-  margin: 12px 0 20px;
+  margin: 0 0 20px;
   max-width: 270px;
 }
 .pl-hero__rule i {
   height: 1px;
   flex: 1;
-  background: linear-gradient(90deg, transparent, rgba(75,58,143,.34), transparent);
+  background: linear-gradient(90deg, rgba(75,58,143,.34), transparent);
 }
 .pl-hero__rule svg { width: 16px; height: 16px; color: var(--pl-accent); flex: 0 0 auto; }
 
@@ -159,7 +168,11 @@
 }
 @media(max-width:900px) {
   .pl-hero__grid { flex-direction: column; }
-  .pl-hero__copy { max-width: none; }
+  .pl-hero__copy { max-width: none; text-align: center; }
+  .pl-hero h1 { text-align: center; }
+  .pl-hero .pl-lede { margin: 0 auto 26px; }
+  .pl-hero__rule { margin: 0 auto 20px; }
+  .pl-hero__cta { justify-content: center; }
   .pl-hero__product {
     position: relative; right: auto; bottom: auto;
     width: min(88vw, 420px); margin: 20px auto 0;
