@@ -77,9 +77,8 @@
             {%- endif -%}
           </ul>
 
-          <a href="{{ block.settings.button_url | default: routes.all_products_collection_url }}" class="pl-btn pl-btn--{{ block.settings.button_style }}">
-            Build this box
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="width:15px;height:15px;margin-left:6px;"><path d="M5 12h13m-5-6 6 6-6 6"/></svg>
+          <a href="{{ block.settings.button_url | default: routes.all_products_collection_url }}" class="pl-btn">
+            Build this box &rarr;
           </a>
         </div>
       {%- endfor -%}
