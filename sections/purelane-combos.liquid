@@ -19,7 +19,8 @@
       {% endif %}
     </div>
 
-    <div class="pl-comborail pl-rv" style="transition-delay: .3s;">
+    <div class="pl-combo-slider" id="combo-slider-{{ section.id }}">
+    <div class="pl-comborail pl-rv" id="comborail-{{ section.id }}" style="transition-delay: .3s;">
       {% for block in section.blocks %}
         <div class="pl-glass pl-combo {% if block.settings.is_hero %}pl-combo--hero{% endif %}" {{ block.shopify_attributes }}>
           <div class="pl-combo__tray">
@@ -119,13 +120,23 @@
         </div>
       {% endfor %}
     </div>
+    </div>{{- /* close pl-combo-slider */ -}}
 
-    <div class="pl-swipecue pl-rv" style="transition-delay: .4s;">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="width: 16px; height: 16px;"><path d="M5 12h13m-5-6 6 6-6 6"/></svg>
-      <span>Swipe for more combos</span>
+    <div class="pl-slider-controls pl-rv" style="transition-delay: .4s;">
+      <button class="pl-slider-btn pl-slider-btn--prev" id="combo-prev-{{ section.id }}" aria-label="Previous combo">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
+      </button>
+      <div class="pl-slider-dots" id="combo-dots-{{ section.id }}">
+        {% for block in section.blocks %}
+          <button class="pl-slider-dot{% if forloop.first %} on{% endif %}" aria-label="Go to combo {{ forloop.index }}"></button>
+        {% endfor %}
+      </div>
+      <button class="pl-slider-btn pl-slider-btn--next" id="combo-next-{{ section.id }}" aria-label="Next combo">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+      </button>
     </div>
-    
-    <p class="pl-railnote pl-rv" style="transition-delay: .45s;">
+
+    <p class="pl-railnote pl-rv" style="transition-delay: .5s;">
       Tapping "Shop bundle" opens the bundle picker with these products already added. You can still swap anything before you pay.
     </p>
     
@@ -134,18 +145,57 @@
 
 <script>
   document.addEventListener('DOMContentLoaded', () => {
-    const observer = new IntersectionObserver((entries) => {
+    /* — reveal animation — */
+    const revealObs = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
           entry.target.classList.add('in');
-          observer.unobserve(entry.target);
+          revealObs.unobserve(entry.target);
         }
       });
     }, { threshold: 0.1 });
+    document.querySelectorAll('#shopify-section-{{ section.id }} .pl-rv').forEach(el => revealObs.observe(el));
 
-    document.querySelectorAll('#shopify-section-{{ section.id }} .pl-rv').forEach(el => {
-      observer.observe(el);
-    });
+    /* — slider controller — */
+    const rail  = document.getElementById('comborail-{{ section.id }}');
+    const dots  = Array.from(document.querySelectorAll('#combo-dots-{{ section.id }} .pl-slider-dot'));
+    const prev  = document.getElementById('combo-prev-{{ section.id }}');
+    const next  = document.getElementById('combo-next-{{ section.id }}');
+    const cards = Array.from(rail.querySelectorAll('.pl-combo'));
+
+    if (!rail || !cards.length) return;
+
+    let current = 0;
+
+    function scrollTo(idx) {
+      idx = Math.max(0, Math.min(idx, cards.length - 1));
+      cards[idx].scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'start' });
+      setActive(idx);
+    }
+
+    function setActive(idx) {
+      current = idx;
+      dots.forEach((d, i) => d.classList.toggle('on', i === idx));
+      if (prev) prev.style.opacity = idx === 0 ? '0.35' : '1';
+      if (next) next.style.opacity = idx === cards.length - 1 ? '0.35' : '1';
+    }
+
+    /* sync dots while user scrolls natively */
+    const snapObs = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const idx = cards.indexOf(entry.target);
+          if (idx !== -1) setActive(idx);
+        }
+      });
+    }, { root: rail, threshold: 0.55 });
+    cards.forEach(c => snapObs.observe(c));
+
+    dots.forEach((d, i) => d.addEventListener('click', () => scrollTo(i)));
+    if (prev) prev.addEventListener('click', () => scrollTo(current - 1));
+    if (next) next.addEventListener('click', () => scrollTo(current + 1));
+
+    setActive(0);
   });
 </script>
 

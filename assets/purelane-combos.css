@@ -131,13 +131,65 @@
 }
 .pl-combo .pl-btn { width: 100%; justify-content: center; }
 
-/* Swipe cue */
-.pl-swipecue {
-  display: flex; align-items: center; justify-content: center; gap: 8px;
-  font-size: 10px; font-weight: 700; letter-spacing: .16em;
-  text-transform: uppercase; color: var(--pl-paper-3); margin-top: 2px;
+/* Slider wrapper */
+.pl-combo-slider { position: relative; }
+
+/* Slider controls row */
+.pl-slider-controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  margin-top: 16px;
 }
-.pl-swipecue svg { width: 14px; height: 14px; color: var(--pl-accent); }
+
+/* Dot indicators */
+.pl-slider-dots {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+.pl-slider-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 999px;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  background: rgba(75, 58, 143, 0.20);
+  transition: width .35s ease, background .35s ease;
+}
+.pl-slider-dot.on {
+  width: 22px;
+  background: var(--pl-brand);
+}
+.pl-slider-dot:hover:not(.on) {
+  background: rgba(75, 58, 143, 0.45);
+}
+
+/* Prev / Next arrow buttons */
+.pl-slider-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 1px solid rgba(75, 58, 143, 0.20);
+  background: rgba(255, 255, 255, 0.72);
+  cursor: pointer;
+  transition: background .25s ease, border-color .25s ease, transform .2s ease;
+  color: var(--pl-surface);
+  backdrop-filter: blur(8px);
+}
+.pl-slider-btn svg { width: 16px; height: 16px; }
+.pl-slider-btn:hover {
+  background: rgba(255, 255, 255, 0.96);
+  border-color: rgba(75, 58, 143, 0.40);
+  transform: scale(1.08);
+}
+.pl-slider-btn:active { transform: scale(0.95); }
+
 .pl-railnote {
   text-align: center; font-size: 12px; color: var(--pl-paper-3);
   margin-top: 14px; max-width: 62ch; margin-left: auto; margin-right: auto;
