@@ -103,17 +103,28 @@
             {% endif %}
             
             <div class="pl-combo__prow">
-              <strong>₹{{ block.settings.price }}</strong>
-              {% if block.settings.compare_price != blank %}
-                <s>₹{{ block.settings.compare_price }}</s>
-              {% endif %}
-              {% if block.settings.save_amount != blank %}
-                <em>Save ₹{{ block.settings.save_amount }}</em>
+              {% if block.settings.product != blank %}
+                <strong>{{ block.settings.product.price | money_without_trailing_zeros }}</strong>
+                {% if block.settings.product.compare_at_price > block.settings.product.price %}
+                  <s>{{ block.settings.product.compare_at_price | money_without_trailing_zeros }}</s>
+                {% endif %}
+                {% assign save_val = block.settings.product.compare_at_price | minus: block.settings.product.price %}
+                {% if save_val > 0 %}
+                  <em>Save {{ save_val | money_without_trailing_zeros }}</em>
+                {% endif %}
+              {% else %}
+                <strong>₹{{ block.settings.price }}</strong>
+                {% if block.settings.compare_price != blank %}
+                  <s>₹{{ block.settings.compare_price }}</s>
+                {% endif %}
+                {% if block.settings.save_amount != blank %}
+                  <em>Save ₹{{ block.settings.save_amount }}</em>
+                {% endif %}
               {% endif %}
             </div>
             <span class="pl-combo__fine">Inclusive of all taxes &middot; COD available</span>
             
-            <a href="#bundles" class="pl-btn {% if block.settings.is_hero %}pl-btn-primary{% else %}pl-btn-ghost{% endif %}">
+            <a href="{% if block.settings.product != blank %}{{ block.settings.product.url }}{% else %}#bundles{% endif %}" class="pl-btn {% if block.settings.is_hero %}pl-btn-primary{% else %}pl-btn-ghost{% endif %}">
               Shop bundle <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="width: 16px; height: 16px;"><path d="M5 12h13m-5-6 6 6-6 6"/></svg>
             </a>
           </div>
@@ -235,6 +246,11 @@
           "type": "text",
           "id": "name",
           "label": "Combo Name"
+        },
+        {
+          "type": "product",
+          "id": "product",
+          "label": "Linked Shopify Product (for live pricing & URL)"
         },
         {
           "type": "text",
