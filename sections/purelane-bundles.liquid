@@ -62,7 +62,7 @@
           </div>
           
           {%- if block.settings.per_product != blank -%}
-            <div class="pl-tier__per">₹{{ block.settings.per_product }} / product</div>
+            <div class="pl-tier__per">Flat ₹{{ block.settings.per_product }} per product</div>
           {%- endif -%}
 
           <ul>
@@ -77,8 +77,11 @@
             {%- endif -%}
           </ul>
 
-          <a href="{{ block.settings.button_url | default: routes.all_products_collection_url }}" class="pl-btn">
-            Build this box &rarr;
+          <a href="{{ block.settings.button_url | default: routes.all_products_collection_url }}" class="pl-btn pl-btn-{{ block.settings.button_style }}">
+            Build this box
+            {%- if block.settings.button_style == 'primary' -%}
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="width:15px;height:15px;margin-left:6px;"><path d="M5 12h13m-5-6 6 6-6 6"/></svg>
+            {%- endif -%}
           </a>
         </div>
       {%- endfor -%}
@@ -172,13 +175,13 @@
           "type": "text",
           "id": "feature_1",
           "label": "Feature 1",
-          "default": "Pick any two"
+          "default": "Pick any two products"
         },
         {
           "type": "text",
           "id": "feature_2",
           "label": "Feature 2",
-          "default": "Free shipping"
+          "default": "Free shipping across India"
         },
         {
           "type": "text",
@@ -217,8 +220,8 @@
             "compare_price": "598",
             "per_product": "174",
             "is_best": false,
-            "feature_1": "Pick any two",
-            "feature_2": "Free shipping",
+            "feature_1": "Pick any two products",
+            "feature_2": "Free shipping across India",
             "feature_3": "",
             "button_style": "ghost"
           }
@@ -232,9 +235,9 @@
             "compare_price": "897",
             "per_product": "166",
             "is_best": true,
-            "feature_1": "Pick any three",
+            "feature_1": "Pick any three products",
             "feature_2": "Covers kitchen and laundry",
-            "feature_3": "Free shipping",
+            "feature_3": "Free shipping across India",
             "button_style": "primary"
           }
         },
@@ -247,9 +250,9 @@
             "compare_price": "1495",
             "per_product": "160",
             "is_best": false,
-            "feature_1": "Pick any five",
+            "feature_1": "Pick any five products",
             "feature_2": "Every room in one order",
-            "feature_3": "Free shipping",
+            "feature_3": "Free shipping across India",
             "button_style": "ghost"
           }
         }
