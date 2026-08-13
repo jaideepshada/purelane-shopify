@@ -1,0 +1,105 @@
+.pl-footer {
+  position: relative;
+  z-index: 2;
+  padding: 44px 0 30px;
+  background: linear-gradient(180deg,rgba(255,255,255,.62),rgba(214,241,221,.90));
+  border-top: 1px solid rgba(75,58,143,.13);
+}
+@media(max-width: 768px) {
+  .pl-footer {
+    padding: 34px 0 24px;
+  }
+}
+.pl-footer-grid {
+  display: grid;
+  gap: 28px;
+  grid-template-columns: 1fr;
+}
+@media(min-width: 760px) {
+  .pl-footer-grid {
+    grid-template-columns: 1.3fr 1fr 1fr 1fr;
+  }
+}
+.pl-footer-col h5 {
+  font-family: 'Outfit', sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  color: #4f7d10;
+  margin-bottom: 14px;
+  margin-top: 0;
+}
+.pl-footer-col a, .pl-footer-col p {
+  display: block;
+  font-size: 13.5px;
+  color: var(--paper-2, rgba(36,26,61,.78));
+  margin-bottom: 9px;
+  transition: .25s;
+  text-decoration: none;
+}
+.pl-footer-col p {
+  line-height: 1.5;
+}
+.pl-footer-col a:hover {
+  color: var(--surface, #17102b);
+  transform: translateX(3px);
+}
+.pl-footer-bot {
+  margin-top: 32px;
+  padding-top: 20px;
+  border-top: 1px solid rgba(75,58,143,.11);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  justify-content: space-between;
+  font-size: 11.5px;
+  color: var(--paper-3, rgba(36,26,61,.56));
+}
+.pl-footer-bot span {
+  display: block;
+}
+
+/* Brand block */
+.pl-footer-brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+  margin-bottom: 16px;
+}
+.pl-footer-brand .mark {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  background: var(--deep, #e2daf3);
+  border-radius: 50%;
+}
+.pl-footer-brand .mark svg {
+  width: 16px;
+  height: 16px;
+  color: var(--accent, #b8701c);
+}
+.pl-footer-brand .txt {
+  display: flex;
+  flex-direction: column;
+}
+.pl-footer-brand .n1 {
+  font-family: 'Outfit', sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: .06em;
+  line-height: 1;
+  color: var(--surface, #17102b);
+  text-transform: uppercase;
+}
+.pl-footer-brand .n2 {
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: .12em;
+  color: var(--paper-3, rgba(36,26,61,.56));
+  text-transform: uppercase;
+  margin-top: 2px;
+}
