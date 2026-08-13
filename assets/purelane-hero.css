@@ -78,9 +78,8 @@
 /* Desktop badge rail */
 .pl-hero__badges {
   position: absolute;
-  right: max(18px, calc((100% - var(--pl-maxw)) / 2 + 18px));
-  top: 63%;
-  transform: translateY(-50%);
+  right: 18px;
+  top: 80px;
   width: 96px;
   z-index: 4;
   display: flex;
@@ -164,6 +163,9 @@
 .hdots button::before{content:'';position:absolute;inset:-19px;}
 .hdots button.on{background:var(--pl-accent);width:20px;border-radius:999px}
 .hdots button:hover{background:rgba(236,230,247,.5)}
+@media(max-width:1200px) {
+  .pl-hero__product { width: min(44vw, 440px); right: 3%; }
+}
 @media(max-width:1150px) {
   .pl-hero__copy { max-width: 470px; }
   .pl-hero__product { width: min(44vw, 440px); right: 3%; }

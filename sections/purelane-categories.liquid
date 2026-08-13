@@ -21,7 +21,7 @@
     <div class="pl-cats-grid">
       {% for block in section.blocks %}
         <a class="pl-cat pl-glass pl-rv pl-rv-d{{ forloop.index }}"
-           href="{{ block.settings.link | default: '#shopify-section-purelane_combos' }}"
+           href="{{ block.settings.link | default: '#combos' }}"
            {{ block.shopify_attributes }}>
 
           <span class="pl-cat__ph">
@@ -122,7 +122,7 @@
           "type": "text",
           "id": "link",
           "label": "Link (use #section-id for anchors)",
-          "default": "#shopify-section-purelane_combos"
+          "default": "#combos"
         }
       ]
     }
@@ -132,10 +132,10 @@
     {
       "name": "Purelane Categories",
       "blocks": [
-        { "type": "category", "settings": { "product_key": "kitchen", "heading": "Kitchen bundle",    "subtext": "Grease, dishes & more",   "link": "#shopify-section-purelane_combos" } },
-        { "type": "category", "settings": { "product_key": "toilet",  "heading": "Bathroom bundle",   "subtext": "Deep clean & disinfect",   "link": "#shopify-section-purelane_combos" } },
-        { "type": "category", "settings": { "product_key": "laundry", "heading": "Laundry bundle",    "subtext": "Softer, fresher wash",      "link": "#shopify-section-purelane_combos" } },
-        { "type": "category", "settings": { "product_key": "tap",     "heading": "Hard water bundle", "subtext": "Melt away limescale",       "link": "#shopify-section-purelane_combos" } }
+        { "type": "category", "settings": { "product_key": "kitchen", "heading": "Kitchen bundle",    "subtext": "Grease, dishes & more",   "link": "#combos" } },
+        { "type": "category", "settings": { "product_key": "toilet",  "heading": "Bathroom bundle",   "subtext": "Deep clean & disinfect",   "link": "#combos" } },
+        { "type": "category", "settings": { "product_key": "laundry", "heading": "Laundry bundle",    "subtext": "Softer, fresher wash",      "link": "#combos" } },
+        { "type": "category", "settings": { "product_key": "tap",     "heading": "Hard water bundle", "subtext": "Melt away limescale",       "link": "#combos" } }
       ]
     }
   ]

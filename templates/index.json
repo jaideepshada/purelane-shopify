@@ -16,7 +16,7 @@
         "heading_highlight": "Lasts",
         "subheading": "Homecare that works on the toughest grime, made from plants. Kind to your home, your family and the world outside it.",
         "button_label": "Shop now",
-        "button_link": "#shopify-section-purelane_shop",
+        "button_link": "#shop",
         "secondary_button_label": "How it works",
         "secondary_button_link": "",
         "badge_1_text": "Plant powered",
@@ -156,7 +156,7 @@
             "icon": "foam",
             "heading": "Less scrubbing",
             "body": "A foaming formulation. The foam clings to grease and lifts it, so you wipe instead of scrub.",
-            "link": "#shopify-section-purelane_shop"
+            "link": "#shop"
           }
         },
         "pillar_2": {
@@ -165,7 +165,7 @@
             "icon": "shield",
             "heading": "Clean ingredients",
             "body": "No sulphates, no chlorine, no synthetic fragrance. Nothing on the label you would not want near your food.",
-            "link": "#shopify-section-purelane_ingredients"
+            "link": "#ingredients"
           }
         },
         "pillar_3": {
@@ -174,7 +174,7 @@
             "icon": "heart",
             "heading": "Safe around everyone",
             "body": "Gentle on hands, safe around kids and pets, and it leaves no toxic residue on the surfaces you touch every day.",
-            "link": "#shopify-section-purelane_shop"
+            "link": "#shop"
           }
         }
       },
@@ -205,7 +205,7 @@
         "heading": "Tough on grime. Gentle on everything else.",
         "body": "Every formula is built on plant-derived cleansers and essential oils. It behaves exactly like the cleaner you are used to, minus the things you never signed up for.",
         "button_label": "See the ingredient list",
-        "button_link": "#shopify-section-purelane_ingredients"
+        "button_link": "#ingredients"
       }
     },
     "purelane_shop": {
@@ -409,10 +409,10 @@
     "purelane_categories": {
       "type": "purelane-categories",
       "blocks": {
-        "cat_1": { "type": "category", "settings": { "product_key": "kitchen", "heading": "Kitchen bundle",    "subtext": "Grease, dishes & more",  "link": "#shopify-section-purelane_combos" } },
-        "cat_2": { "type": "category", "settings": { "product_key": "toilet",  "heading": "Bathroom bundle",   "subtext": "Deep clean & disinfect",  "link": "#shopify-section-purelane_combos" } },
-        "cat_3": { "type": "category", "settings": { "product_key": "laundry", "heading": "Laundry bundle",    "subtext": "Softer, fresher wash",    "link": "#shopify-section-purelane_combos" } },
-        "cat_4": { "type": "category", "settings": { "product_key": "tap",     "heading": "Hard water bundle", "subtext": "Melt away limescale",    "link": "#shopify-section-purelane_combos" } }
+        "cat_1": { "type": "category", "settings": { "product_key": "kitchen", "heading": "Kitchen bundle",    "subtext": "Grease, dishes & more",  "link": "#combos" } },
+        "cat_2": { "type": "category", "settings": { "product_key": "toilet",  "heading": "Bathroom bundle",   "subtext": "Deep clean & disinfect",  "link": "#combos" } },
+        "cat_3": { "type": "category", "settings": { "product_key": "laundry", "heading": "Laundry bundle",    "subtext": "Softer, fresher wash",    "link": "#combos" } },
+        "cat_4": { "type": "category", "settings": { "product_key": "tap",     "heading": "Hard water bundle", "subtext": "Melt away limescale",    "link": "#combos" } }
       },
       "block_order": ["cat_1","cat_2","cat_3","cat_4"],
       "settings": { "kicker": "Bundle categories", "heading": "Find the right bundle for you" }

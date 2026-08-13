@@ -33,6 +33,22 @@
     setScene(n);
   }
 
+  /* ---------- scroll spy for rail ---------- */
+  var railLinks = [].slice.call(document.querySelectorAll('.pl-rail a'));
+  var targets = railLinks.map(function (a) { 
+    try { return document.querySelector(a.getAttribute('href')); } catch(e) { return null; }
+  });
+  function syncRail() {
+    if (!railLinks.length) return;
+    var mid = window.scrollY + window.innerHeight * 0.42, idx = 0;
+    targets.forEach(function (t, i) { 
+      var top = 0, el = t;
+      while (el) { top += el.offsetTop; el = el.offsetParent; }
+      if (t && top <= mid) idx = i; 
+    });
+    railLinks.forEach(function (a, i) { a.classList.toggle('on', i === idx); });
+  }
+
   /* ---------- parallax + header ---------- */
   var hdr = document.getElementById('hdr');
   var prod = document.getElementById('heroProd');
@@ -56,6 +72,7 @@
       }
     }
     pickScene();
+    syncRail();
   }
   function onScroll() { if (!raf) raf = requestAnimationFrame(frame); }
   window.addEventListener('scroll', onScroll, { passive: true });

@@ -7,29 +7,29 @@
 -%}
 
 <section class="pl-hero" aria-label="Hero" data-scene="1">
-  <!-- Desktop Badges Rail -->
-  <aside class="pl-hero__badges pl-rv" style="transition-delay: 0.6s;">
-    <div class="pl-hero__badge">
-      <div class="pl-hero__badge-icon">
-        {% render 'purelane-icons', name: 'leaf' %}
-      </div>
-      <span>{{ section.settings.badge_1_text }}</span>
-    </div>
-    <div class="pl-hero__badge">
-      <div class="pl-hero__badge-icon">
-        {% render 'purelane-icons', name: 'shield' %}
-      </div>
-      <span>{{ section.settings.badge_2_text }}</span>
-    </div>
-    <div class="pl-hero__badge">
-      <div class="pl-hero__badge-icon">
-        {% render 'purelane-icons', name: 'no-chemical' %}
-      </div>
-      <span>{{ section.settings.badge_3_text }}</span>
-    </div>
-  </aside>
-
   <div class="pl-hero__grid">
+    <!-- Desktop Badges Rail -->
+    <aside class="pl-hero__badges">
+      <div class="pl-hero__badge">
+        <div class="pl-hero__badge-icon">
+          {% render 'purelane-icons', name: 'leaf' %}
+        </div>
+        <span>{{ section.settings.badge_1_text }}</span>
+      </div>
+      <div class="pl-hero__badge">
+        <div class="pl-hero__badge-icon">
+          {% render 'purelane-icons', name: 'shield' %}
+        </div>
+        <span>{% if section.settings.badge_2_text == 'Kids & pet safe' or section.settings.badge_2_text == 'KIDS & PET SAFE' %}SAFE FOR<br>KIDS &amp; PETS{% else %}{{ section.settings.badge_2_text }}{% endif %}</span>
+      </div>
+      <div class="pl-hero__badge">
+        <div class="pl-hero__badge-icon">
+          {% render 'purelane-icons', name: 'no-chemical' %}
+        </div>
+        <span>{{ section.settings.badge_3_text }}</span>
+      </div>
+    </aside>
+
     <div class="pl-hero__copy">
       <h1 class="pl-d1 pl-rv" style="transition-delay: 0.1s;">
         {%- if section.settings.heading_highlight != blank -%}
