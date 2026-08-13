@@ -104,13 +104,13 @@
             
             <div class="pl-combo__prow">
               {% if block.settings.product != blank %}
-                <strong>{{ block.settings.product.price | money_without_trailing_zeros }}</strong>
+                <strong>₹{{ block.settings.product.price | divided_by: 100 }}</strong>
                 {% if block.settings.product.compare_at_price > block.settings.product.price %}
-                  <s>{{ block.settings.product.compare_at_price | money_without_trailing_zeros }}</s>
+                  <s>₹{{ block.settings.product.compare_at_price | divided_by: 100 }}</s>
                 {% endif %}
                 {% assign save_val = block.settings.product.compare_at_price | minus: block.settings.product.price %}
                 {% if save_val > 0 %}
-                  <em>Save {{ save_val | money_without_trailing_zeros }}</em>
+                  <em>Save ₹{{ save_val | divided_by: 100 }}</em>
                 {% endif %}
               {% else %}
                 <strong>₹{{ block.settings.price }}</strong>
