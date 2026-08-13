@@ -1,0 +1,126 @@
+/* ==========================================================================
+   Purelane — Pillars "How It Works" Section
+   Dimensions and colours copied exactly from purelane-homepage.html
+   (lines 363-371 base, 729-730 light theme overrides)
+   ========================================================================== */
+
+.pl-pillars-sec {
+  position: relative;
+  padding: var(--pl-sec-y) 0;
+}
+
+/* ---------- 3-column grid ----------
+   Prototype: 1-col → 3-col at 820px, gap: 16px
+   ---------------------------------------- */
+.pl-pillars-grid {
+  display: grid;
+  gap: 16px;
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 820px) {
+  .pl-pillars-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* ---------- pillar card ----------
+   Prototype: .pillar { padding:26px 24px 24px; display:flex; flex-direction:column }
+   ---------------------------------------- */
+.pl-pillar {
+  padding: 26px 24px 24px;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.4s var(--pl-ease);
+}
+
+.pl-pillar:hover {
+  transform: translateY(-5px);
+}
+
+/* ---------- icon badge ----------
+   Prototype: width:50px; height:50px; border-radius:15px; display:grid;
+              place-items:center; margin-bottom:16px
+   Light theme: background:linear-gradient(150deg,rgba(201,118,29,.18),rgba(75,58,143,.12));
+                border:1px solid rgba(75,58,143,.16); color:#4f7d10
+   ---------------------------------------- */
+.pl-pillar__icon {
+  width: 50px;
+  height: 50px;
+  border-radius: 15px;
+  display: grid;
+  place-items: center;
+  margin-bottom: 16px;
+  background: linear-gradient(150deg, rgba(201, 118, 29, .18), rgba(75, 58, 143, .12));
+  border: 1px solid rgba(75, 58, 143, .16);
+  color: #4f7d10;
+  flex-shrink: 0;
+}
+
+/* ---------- icon SVG ----------
+   Prototype: width:24px; height:24px
+   ---------------------------------------- */
+.pl-pillar__icon svg {
+  width: 24px;
+  height: 24px;
+}
+
+/* ---------- heading ----------
+   Prototype: .pillar .d3 { margin-bottom:11px }
+   .d3 = Outfit 800 uppercase, clamp(21px, 2.5vw, 30px)
+   ---------------------------------------- */
+.pl-pillar__title {
+  font-family: 'Outfit', sans-serif;
+  font-size: clamp(21px, 2.5vw, 30px);
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: -0.018em;
+  line-height: 1.04;
+  color: var(--pl-surface);
+  margin: 0 0 11px;
+}
+
+/* ---------- body copy ----------
+   Prototype: .pillar p { margin-bottom:20px; flex:1 }
+   .body-s = 14.5px, color:var(--paper-2), line-height:1.66
+   ---------------------------------------- */
+.pl-pillar__body {
+  font-size: 14.5px;
+  color: var(--pl-paper-2);
+  line-height: 1.66;
+  margin: 0 0 20px;
+  flex: 1;
+  font-family: 'Inter', sans-serif;
+}
+
+/* ---------- Learn More button ----------
+   Prototype: .pillar .btn { align-self:flex-start }
+   Uses .btn-ghost light theme:
+   background:rgba(255,255,255,.66); border:1px solid rgba(75,58,143,.22); color:#01423b
+   Size: .btn-sm → height:38px; padding:0 18px; font-size:11px
+   ---------------------------------------- */
+.pl-pillar__btn {
+  align-self: flex-start;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 38px;
+  padding: 0 18px;
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+  text-decoration: none;
+  font-family: 'Inter', sans-serif;
+  cursor: pointer;
+  transition: all 0.3s var(--pl-ease);
+  background: rgba(255, 255, 255, .66);
+  border: 1px solid rgba(75, 58, 143, .22);
+  color: #01423b;
+}
+
+.pl-pillar__btn:hover {
+  background: rgba(255, 255, 255, .9);
+  transform: translateY(-2px);
+}

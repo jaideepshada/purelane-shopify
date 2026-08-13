@@ -1,0 +1,117 @@
+{{ 'purelane-base.css' | asset_url | stylesheet_tag }}
+{{ 'purelane-cats-trust-signup.css' | asset_url | stylesheet_tag }}
+
+{% style %}
+  .pl-trust-sec--{{ section.id }} {
+    --pl-sec-y: {{ section.settings.padding_y }}px;
+    background-color: {{ section.settings.bg_color }};
+  }
+{% endstyle %}
+
+<section class="pl-trust-sec pl-trust-sec--{{ section.id }}" data-scene="4">
+  <div class="pl-wrap">
+    <div class="pl-trust pl-glass pl-rv">
+
+      {% for block in section.blocks %}
+        <div class="pl-trust-item" {{ block.shopify_attributes }}>
+
+          {% case block.settings.icon %}
+            {% when 'leaf' %}
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M12 21c0-6.5 3.5-11 8-12.5C20 15 16.5 20 12 21Z"/>
+                <path d="M12 21C12 14.5 8.5 10 4 8.5 4 15 7.5 20 12 21Z"/>
+              </svg>
+            {% when 'recycle' %}
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M4 8h16v11a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2Z"/>
+                <path d="M4 8 6.5 3h11L20 8M9.5 12h5"/>
+              </svg>
+            {% when 'heart' %}
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M12 20s-7-4.4-7-9.4A4.1 4.1 0 0 1 12 8a4.1 4.1 0 0 1 7 2.6c0 5-7 9.4-7 9.4Z"/>
+              </svg>
+            {% when 'globe' %}
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <circle cx="12" cy="12" r="8.6"/>
+                <path d="M3.4 12h17.2M12 3.4c2.4 2.4 3.6 5.4 3.6 8.6S14.4 18.2 12 20.6c-2.4-2.4-3.6-5.4-3.6-8.6S9.6 5.8 12 3.4Z"/>
+              </svg>
+          {% endcase %}
+
+          <span>{{ block.settings.label | newline_to_br }}</span>
+        </div>
+      {% endfor %}
+
+    </div>
+  </div>
+</section>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    var obs = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) { if (e.isIntersecting) e.target.classList.add('in'); });
+    }, { rootMargin: '0px 0px -10% 0px', threshold: 0.1 });
+    document.querySelectorAll('#shopify-section-{{ section.id }} .pl-rv').forEach(function (el) { obs.observe(el); });
+  });
+</script>
+
+{% schema %}
+{
+  "name": "Purelane Trust Bar",
+  "settings": [
+    {
+      "type": "range",
+      "id": "padding_y",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "label": "Vertical Padding",
+      "default": 30
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background Color",
+      "default": "transparent"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "trust_item",
+      "name": "Trust Item",
+      "settings": [
+        {
+          "type": "select",
+          "id": "icon",
+          "label": "Icon",
+          "options": [
+            { "value": "leaf",    "label": "Leaf (Plant derived)" },
+            { "value": "recycle", "label": "Package (Recyclable)" },
+            { "value": "heart",   "label": "Heart (Safe for kids)" },
+            { "value": "globe",   "label": "Globe (Made in India)" }
+          ],
+          "default": "leaf"
+        },
+        {
+          "type": "textarea",
+          "id": "label",
+          "label": "Label (press Enter for line break)",
+          "default": "Plant derived\nformulas"
+        }
+      ]
+    }
+  ],
+  "max_blocks": 8,
+  "presets": [
+    {
+      "name": "Purelane Trust Bar",
+      "blocks": [
+        { "type": "trust_item", "settings": { "icon": "leaf",    "label": "Plant derived\nformulas" } },
+        { "type": "trust_item", "settings": { "icon": "recycle", "label": "Recyclable\npackaging" } },
+        { "type": "trust_item", "settings": { "icon": "heart",   "label": "Safe for\nkids & pets" } },
+        { "type": "trust_item", "settings": { "icon": "globe",   "label": "Made in\nIndia" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

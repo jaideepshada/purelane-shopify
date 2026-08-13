@@ -1,0 +1,165 @@
+/* ==========================================================================
+   Purelane — Full Range Section  (#range)
+   Dimensions from purelane-homepage.html lines 335-341, 598-606, 706
+   ========================================================================== */
+
+.pl-range-sec {
+  position: relative;
+  padding: var(--pl-sec-y) 0;
+}
+
+/* Glass card — matches .glass.range in prototype */
+.pl-range-panel {
+  padding: clamp(20px, 2.6vw, 30px);
+}
+
+/* Header row: heading left, body right — space-between */
+.pl-range-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  gap: 14px;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+
+.pl-range-head .pl-d2 {
+  max-width: 20ch;
+  margin-top: 10px;
+}
+
+.pl-range-head__body {
+  font-size: 14.5px;
+  color: var(--pl-paper-2);
+  line-height: 1.66;
+  font-family: 'Inter', sans-serif;
+  max-width: 34ch;
+  margin-bottom: 4px;
+}
+
+/* Strip wrapper — scrollable on mobile, flush on desktop */
+.pl-stripwrap {
+  margin: 10px 0 0;
+  overflow-x: auto;
+  overflow-y: hidden;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+.pl-stripwrap::-webkit-scrollbar { display: none; }
+
+/* Row of product images */
+/* Desktop: space-between, gap 6px, min-height 150px  */
+.pl-rangerow {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 6px;
+  min-height: 150px;
+}
+
+/* Desktop product heights — light theme drop-shadow */
+.pl-rangerow .pl-pimg {
+  height: 132px;
+  filter: drop-shadow(0 9px 14px rgba(0, 74, 66, .14));
+}
+.pl-rangerow .pl-pimg:nth-child(even) { height: 118px; }
+
+/* Mobile overrides */
+@media (max-width: 760px) {
+  .pl-rangerow {
+    min-height: 132px;
+    justify-content: flex-start;
+    gap: 10px;
+  }
+  .pl-rangerow .pl-pimg       { height: 116px; }
+  .pl-rangerow .pl-pimg:nth-child(even) { height: 104px; }
+  .pl-range-head { gap: 10px; }
+}
+
+/* Allow horizontal scroll within the glass panel for the strip */
+.pl-range-panel { overflow-x: auto; overflow-y: hidden; }
+
+/* "Swipe to see" hint — hidden on desktop, visible on mobile */
+.pl-striphint {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--pl-paper-3, rgba(36,26,61,.56));
+  margin-top: 12px;
+  display: none;
+}
+@media (max-width: 760px) { .pl-striphint { display: block; } }
+
+
+/* ==========================================================================
+   Purelane — Why Bundles Beat Buying Single  (#whybundles)
+   Dimensions from purelane-homepage.html lines 548-557, 733-734
+   ========================================================================== */
+
+.pl-whybundles-sec {
+  position: relative;
+  padding: var(--pl-sec-y) 0;
+}
+
+/* 4-column benefit grid
+   Prototype: 2-col → 4-col @880px, gap:20px 16px
+   ---------------------------------------- */
+.pl-wb-grid {
+  display: grid;
+  gap: 20px 16px;
+  grid-template-columns: repeat(2, 1fr);
+}
+
+@media (min-width: 880px) {
+  .pl-wb-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+/* Single benefit item — centered */
+.pl-wb-item {
+  text-align: center;
+}
+
+/* Circular icon badge
+   Light theme: radial-gradient amber→brand, border rgba(75,58,143,.16), color #4f7d10
+   Prototype: width:56px; height:56px; border-radius:50%; margin:0 auto 14px
+   ---------------------------------------- */
+.pl-wb-icon {
+  width: 56px;
+  height: 56px;
+  margin: 0 auto 14px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  background: radial-gradient(circle at 36% 28%, rgba(201,118,29,.20), rgba(75,58,143,.12));
+  border: 1px solid rgba(75, 58, 143, .16);
+  color: #4f7d10;
+}
+
+/* Prototype: svg width:25px; height:25px */
+.pl-wb-icon svg {
+  width: 25px;
+  height: 25px;
+}
+
+/* Heading: Outfit 13.5px 700 uppercase */
+.pl-wb-title {
+  font-family: 'Outfit', sans-serif;
+  font-size: 13.5px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .03em;
+  color: var(--pl-surface);
+  margin: 0 0 7px;
+}
+
+/* Description: 12.2px, paper-2, line-height 1.5 */
+.pl-wb-desc {
+  font-size: 12.2px;
+  color: var(--pl-paper-2);
+  line-height: 1.5;
+  margin: 0;
+  font-family: 'Inter', sans-serif;
+}

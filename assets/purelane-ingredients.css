@@ -1,6 +1,7 @@
 /* ==========================================================================
    Purelane — Ingredients Section
-   Matches the "Sourced from Nature" panel in purelane-homepage.html
+   Dimensions and colours copied exactly from purelane-homepage.html
+   (lines 353-360, 756, 762-766)
    ========================================================================== */
 
 .pl-ing-sec {
@@ -8,7 +9,7 @@
   padding: var(--pl-sec-y) 0;
 }
 
-/* Inner glass panel — mirrors .glass.sec-pad in the prototype */
+/* Inner glass panel */
 .pl-ing-panel {
   padding: clamp(28px, 3.8vw, 48px) clamp(22px, 3.4vw, 44px);
 }
@@ -23,76 +24,108 @@
   margin: 12px 0 0;
 }
 
-/* 5-column ingredient grid */
+/* ---------- ingredient grid ----------
+   Prototype: 2-col mobile → 5-col desktop (breakpoint 760px)
+   gap: 0 (dividers are pseudo-elements)
+   ---------------------------------------- */
 .pl-ing-grid {
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  gap: 12px 20px;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0;
 }
 
-@media (max-width: 900px) {
+@media (min-width: 760px) {
   .pl-ing-grid {
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(5, 1fr);
   }
 }
 
-@media (max-width: 580px) {
-  .pl-ing-grid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 10px 12px;
-  }
-}
-
-/* Single ingredient item */
+/* ---------- single ingredient item ----------
+   Prototype: text-align:center; padding:16px 12px; position:relative
+   ---------------------------------------- */
 .pl-ing-item {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
   text-align: center;
-  gap: 10px;
-  padding: 18px 10px 14px;
-  border-radius: 18px;
-  transition: transform 0.3s var(--pl-ease);
+  padding: 16px 12px;
+  position: relative;
 }
 
-.pl-ing-item:hover {
-  transform: translateY(-4px);
+/* Vertical divider between items (desktop only) — matches prototype */
+@media (min-width: 760px) {
+  .pl-ing-item + .pl-ing-item::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 14%;
+    bottom: 14%;
+    width: 1px;
+    background: linear-gradient(180deg, transparent, rgba(75, 58, 143, .20), transparent);
+  }
 }
 
-/* SVG illustration wrapper */
+/* ---------- art wrapper ----------
+   Prototype: height:88px; display:grid; place-items:center; margin-bottom:12px
+   ---------------------------------------- */
 .pl-ing-art {
-  width: 88px;
   height: 88px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
+  display: grid;
+  place-items: center;
+  margin-bottom: 12px;
 }
 
+/* ---------- SVG size ----------
+   Prototype: height:84px; width:auto
+   ---------------------------------------- */
 .pl-ing-art svg {
-  width: 80px;
-  height: 80px;
-  overflow: visible;
+  height: 84px;
+  width: auto;
 }
 
-/* Name — all-caps tight label */
+/* ---------- light-theme botanical colour overrides ----------
+   Copied exactly from prototype lines 762-766:
+   .ing-i .art svg                          { stroke: #0d5b52 }
+   .ing-i .art svg [stroke="#f0a03c"]       { stroke: #b8701c }
+   .ing-i .art svg [fill="#ece6f7"]         { fill: #0d5b52   }
+   .ing-i .art svg [stroke="#f0a03c"][stroke-width="2.4"] { stroke: #b8701c }
+   ---------------------------------------- */
+.pl-ing-art svg {
+  stroke: #0d5b52;
+}
+
+.pl-ing-art svg [stroke="#f0a03c"] {
+  stroke: #b8701c;
+}
+
+.pl-ing-art svg [fill="#ece6f7"] {
+  fill: #0d5b52;
+}
+
+.pl-ing-art svg [stroke="#f0a03c"][stroke-width="2.4"] {
+  stroke: #b8701c;
+}
+
+/* ---------- ingredient name ----------
+   Prototype: font-family:'Outfit'; font-size:12.5px; font-weight:700;
+              letter-spacing:.11em; text-transform:uppercase;
+              color:var(--surface); margin-bottom:6px
+   ---------------------------------------- */
 .pl-ing-name {
-  font-family: 'Inter', sans-serif;
-  font-size: 10.5px;
-  font-weight: 800;
-  letter-spacing: 0.18em;
+  font-family: 'Outfit', sans-serif;
+  font-size: 12.5px;
+  font-weight: 700;
+  letter-spacing: 0.11em;
   text-transform: uppercase;
   color: var(--pl-surface);
-  margin: 0;
+  margin: 0 0 6px;
   line-height: 1.2;
 }
 
-/* Description */
+/* ---------- ingredient description ----------
+   Prototype: font-size:12.2px; color:var(--paper-2); line-height:1.5
+   ---------------------------------------- */
 .pl-ing-desc {
   font-family: 'Inter', sans-serif;
-  font-size: 13px;
+  font-size: 12.2px;
   color: var(--pl-paper-2);
-  line-height: 1.55;
+  line-height: 1.5;
   margin: 0;
-  max-width: 16ch;
 }

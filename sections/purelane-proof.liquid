@@ -1,0 +1,364 @@
+{{ 'purelane-base.css' | asset_url | stylesheet_tag }}
+{{ 'purelane-combos.css' | asset_url | stylesheet_tag }}
+{{ 'purelane-proof.css' | asset_url | stylesheet_tag }}
+
+{% style %}
+  .pl-proof-sec--{{ section.id }} {
+    --pl-sec-y: {{ section.settings.padding_y }}px;
+    background-color: {{ section.settings.bg_color }};
+  }
+  @media (max-width: 768px) {
+    .pl-proof-sec--{{ section.id }} {
+      --pl-sec-y: {{ section.settings.padding_y | divided_by: 1.5 }}px;
+    }
+  }
+{% endstyle %}
+
+<section id="proof" class="pl-proof-sec pl-proof-sec--{{ section.id }}" data-scene="3">
+  <div class="pl-wrap">
+    <div class="pl-proof-panel pl-glass pl-rv">
+
+      {%- comment -%} ── Main two-column layout ── {%- endcomment -%}
+      <div class="pl-proof-grid">
+
+        {%- comment -%} LEFT: heading + body + CTA {%- endcomment -%}
+        <div class="pl-proof-left">
+          {% if section.settings.kicker != blank %}
+            <p class="pl-kicker pl-proof-kicker">{{ section.settings.kicker }}</p>
+          {% endif %}
+
+          <h2 class="pl-d2">{{ section.settings.heading }}</h2>
+
+          {% if section.settings.body != blank %}
+            <p class="pl-proof-body">{{ section.settings.body }}</p>
+          {% endif %}
+
+          {% if section.settings.button_label != blank and section.settings.button_link != blank %}
+            <a class="pl-proof-btn" href="{{ section.settings.button_link }}">
+              {{ section.settings.button_label }}
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M5 12h13m-5-6 6 6-6 6"/>
+              </svg>
+            </a>
+          {% endif %}
+        </div>
+
+        {%- comment -%} RIGHT: product rotator {%- endcomment -%}
+        {% assign rotator_blocks = section.blocks | where: "type", "rotator_item" %}
+        {% if rotator_blocks.size > 0 %}
+          <div class="pl-rot pl-glass-2" id="pl-rot-{{ section.id }}" aria-live="polite">
+            <div class="pl-rot__frame">
+              {% for block in rotator_blocks %}
+                <span
+                  class="pl-pimg pl-p-{{ block.settings.product_key }}{% if forloop.first %} on{% endif %}"
+                  role="img"
+                  aria-label="{{ block.settings.caption_title }}"
+                  data-name="{{ block.settings.caption_title }}"
+                  data-note="{{ block.settings.caption_note }}"
+                  {{ block.shopify_attributes }}
+                ></span>
+              {% endfor %}
+            </div>
+
+            <div class="pl-rot__cap">
+              <b>{{ rotator_blocks.first.settings.caption_title }}</b>
+              <span>{{ rotator_blocks.first.settings.caption_note }}</span>
+            </div>
+
+            <div class="pl-rot__dots" role="tablist" aria-label="Product slides">
+              {% for block in rotator_blocks %}
+                <button
+                  class="{% if forloop.first %}on{% endif %}"
+                  role="tab"
+                  aria-label="Show {{ block.settings.caption_title }}"
+                  aria-selected="{% if forloop.first %}true{% else %}false{% endif %}"
+                ></button>
+              {% endfor %}
+            </div>
+          </div>
+        {% endif %}
+
+      </div>{%- comment -%} /.pl-proof-grid {%- endcomment -%}
+
+      {%- comment -%} ── Stats row spanning full width ── {%- endcomment -%}
+      {% assign stat_blocks = section.blocks | where: "type", "stat" %}
+      {% if stat_blocks.size > 0 %}
+        <div class="pl-proof-stats pl-glass-2">
+          {% for block in stat_blocks %}
+            <div class="pl-stat" {{ block.shopify_attributes }}>
+              <div class="pl-stat__ring">{{ block.settings.value }}</div>
+              <h3 class="pl-stat__label">{{ block.settings.label }}</h3>
+              {% if block.settings.description != blank %}
+                <p class="pl-stat__desc">{{ block.settings.description }}</p>
+              {% endif %}
+            </div>
+          {% endfor %}
+        </div>
+      {% endif %}
+
+    </div>
+  </div>
+</section>
+
+<script>
+(function () {
+  var sectionEl = document.getElementById('pl-rot-{{ section.id }}');
+  if (!sectionEl) return;
+
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var imgs   = [].slice.call(sectionEl.querySelectorAll('.pl-rot__frame .pl-pimg'));
+  var dots   = [].slice.call(sectionEl.querySelectorAll('.pl-rot__dots button'));
+  var capB   = sectionEl.querySelector('.pl-rot__cap b');
+  var capS   = sectionEl.querySelector('.pl-rot__cap span');
+  var current = 0;
+  var timer   = null;
+
+  function go(n) {
+    imgs[current].classList.remove('on');
+    dots[current].classList.remove('on');
+    dots[current].setAttribute('aria-selected', 'false');
+    current = (n + imgs.length) % imgs.length;
+    imgs[current].classList.add('on');
+    dots[current].classList.add('on');
+    dots[current].setAttribute('aria-selected', 'true');
+    if (capB) capB.textContent   = imgs[current].getAttribute('data-name');
+    if (capS) capS.textContent   = imgs[current].getAttribute('data-note');
+  }
+
+  function play() {
+    if (!timer && !reduce) timer = setInterval(function () { go(current + 1); }, 2900);
+  }
+
+  function stop() {
+    if (timer) { clearInterval(timer); timer = null; }
+  }
+
+  dots.forEach(function (d, i) {
+    d.addEventListener('click', function () { stop(); go(i); play(); });
+  });
+
+  sectionEl.addEventListener('mouseenter', stop);
+  sectionEl.addEventListener('mouseleave', play);
+
+  if ('IntersectionObserver' in window) {
+    new IntersectionObserver(function (es) {
+      es.forEach(function (e) { e.isIntersecting ? play() : stop(); });
+    }, { threshold: 0.25 }).observe(sectionEl);
+  } else {
+    play();
+  }
+
+  /* Reveal animation */
+  var observer = new IntersectionObserver(function (entries) {
+    entries.forEach(function (entry) {
+      if (entry.isIntersecting) entry.target.classList.add('in');
+    });
+  }, { rootMargin: '0px 0px -10% 0px', threshold: 0.1 });
+  document.querySelectorAll('#shopify-section-{{ section.id }} .pl-rv').forEach(function (el) {
+    observer.observe(el);
+  });
+})();
+</script>
+
+{% schema %}
+{
+  "name": "Purelane Proof",
+  "settings": [
+    {
+      "type": "text",
+      "id": "kicker",
+      "label": "Kicker",
+      "default": "Why it works"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Tough on grime. Gentle on everything else."
+    },
+    {
+      "type": "textarea",
+      "id": "body",
+      "label": "Body Copy",
+      "default": "Every formula is built on plant-derived cleansers and essential oils. It behaves exactly like the cleaner you are used to, minus the things you never signed up for."
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Button Label",
+      "default": "See the ingredient list"
+    },
+    {
+      "type": "text",
+      "id": "button_link",
+      "label": "Button Link",
+      "default": "#shopify-section-purelane_ingredients"
+    },
+    {
+      "type": "range",
+      "id": "padding_y",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "label": "Vertical Padding",
+      "default": 40
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background Color",
+      "default": "transparent"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "rotator_item",
+      "name": "Rotator Product",
+      "settings": [
+        {
+          "type": "select",
+          "id": "product_key",
+          "label": "Product Image",
+          "options": [
+            { "value": "kitchen",  "label": "Kitchen Cleaner" },
+            { "value": "tap",      "label": "Tap Cleaner" },
+            { "value": "laundry",  "label": "Laundry Detergent" },
+            { "value": "toilet",   "label": "Toilet Cleaner" },
+            { "value": "floor",    "label": "Floor Cleaner" },
+            { "value": "dish",     "label": "Dishwash Gel" },
+            { "value": "metal",    "label": "Metal Cleaner" },
+            { "value": "handwash", "label": "Liquid Handwash" },
+            { "value": "wm",       "label": "Washing Machine Cleaner" }
+          ],
+          "default": "kitchen"
+        },
+        {
+          "type": "text",
+          "id": "caption_title",
+          "label": "Caption Title",
+          "default": "Kitchen cleaner"
+        },
+        {
+          "type": "text",
+          "id": "caption_note",
+          "label": "Caption Note",
+          "default": "Foam lifts grease, no scrubbing"
+        }
+      ]
+    },
+    {
+      "type": "stat",
+      "name": "Stat",
+      "settings": [
+        {
+          "type": "text",
+          "id": "value",
+          "label": "Value",
+          "default": "99.9%"
+        },
+        {
+          "type": "text",
+          "id": "label",
+          "label": "Label",
+          "default": "Germ kill"
+        },
+        {
+          "type": "text",
+          "id": "description",
+          "label": "Description",
+          "default": "Tested against germs and bacteria"
+        }
+      ]
+    }
+  ],
+  "max_blocks": 20,
+  "presets": [
+    {
+      "name": "Purelane Proof",
+      "blocks": [
+        {
+          "type": "rotator_item",
+          "settings": {
+            "product_key": "kitchen",
+            "caption_title": "Kitchen cleaner",
+            "caption_note": "Foam lifts grease, no scrubbing"
+          }
+        },
+        {
+          "type": "rotator_item",
+          "settings": {
+            "product_key": "tap",
+            "caption_title": "Tap & limescale",
+            "caption_note": "Melts hard water stains"
+          }
+        },
+        {
+          "type": "rotator_item",
+          "settings": {
+            "product_key": "laundry",
+            "caption_title": "Laundry detergent",
+            "caption_note": "Tough on odour, soft on fabric"
+          }
+        },
+        {
+          "type": "rotator_item",
+          "settings": {
+            "product_key": "toilet",
+            "caption_title": "Toilet cleaner",
+            "caption_note": "Kills 99.9% of germs"
+          }
+        },
+        {
+          "type": "rotator_item",
+          "settings": {
+            "product_key": "floor",
+            "caption_title": "Floor cleaner",
+            "caption_note": "Neem powered, pet safe"
+          }
+        },
+        {
+          "type": "rotator_item",
+          "settings": {
+            "product_key": "dish",
+            "caption_title": "Dishwash gel",
+            "caption_note": "Cuts grease, kind to hands"
+          }
+        },
+        {
+          "type": "stat",
+          "settings": {
+            "value": "99.9%",
+            "label": "Germ kill",
+            "description": "Tested against germs and bacteria"
+          }
+        },
+        {
+          "type": "stat",
+          "settings": {
+            "value": "0%",
+            "label": "Sulphates",
+            "description": "No SLS, chlorine or parabens"
+          }
+        },
+        {
+          "type": "stat",
+          "settings": {
+            "value": "100%",
+            "label": "Plant based",
+            "description": "Cleansers derived from plants"
+          }
+        },
+        {
+          "type": "stat",
+          "settings": {
+            "value": "4.8",
+            "label": "Rated",
+            "description": "Across 8,000+ verified reviews"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

@@ -104,9 +104,7 @@
       {%- endif -%}
       <a href="{{ routes.cart_url }}" class="pl-ico" id="cart-icon-bubble" aria-label="Cart">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="8" cy="21" r="1"/><circle cx="19" cy="21" r="1"/><path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"/></svg>
-        {%- if cart.item_count > 0 -%}
-          <span class="pl-dot">{{ cart.item_count }}</span>
-        {%- endif -%}
+        <span class="pl-dot"{% if cart.item_count == 0 %} style="display:none"{% endif %}>{{ cart.item_count }}</span>
       </a>
       <button type="button" class="pl-ico pl-burger" aria-label="Menu">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><line x1="4" x2="20" y1="12" y2="12"/><line x1="4" x2="20" y1="6" y2="6"/><line x1="4" x2="20" y1="18" y2="18"/></svg>
