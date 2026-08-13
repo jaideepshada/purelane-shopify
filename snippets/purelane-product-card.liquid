@@ -29,8 +29,16 @@
     {% endif %}
   </div>
   {% if product.available %}
-    <button type="button" class="pl-btn pl-btn-ghost pl-btn-sm pl-card__atc" data-product-id="{{ product.id }}">Add to cart</button>
+    {%- assign variant = product.selected_or_first_available_variant -%}
+    <form action="/cart/add" method="post" class="pl-atc-form">
+      <input type="hidden" name="id" value="{{ variant.id }}">
+      <input type="hidden" name="quantity" value="1">
+      <button type="submit" class="pl-btn pl-btn-ghost pl-btn-sm pl-card__atc">
+        <span class="pl-atc__label">Add to cart</span>
+      </button>
+    </form>
   {% else %}
     <button type="button" class="pl-btn pl-btn-ghost pl-btn-sm pl-card__atc" disabled>Sold out</button>
   {% endif %}
 </article>
+

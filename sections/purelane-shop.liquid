@@ -34,6 +34,52 @@
   },{rootMargin:'0px 0px -12% 0px',threshold:0.12});
   els.forEach(function(el){o.observe(el);});
 })();
+
+// Add to cart — fetch handler
+(function () {
+  document.addEventListener('submit', function (e) {
+    var form = e.target;
+    if (!form.classList.contains('pl-atc-form')) return;
+    e.preventDefault();
+    var btn   = form.querySelector('.pl-card__atc');
+    var label = form.querySelector('.pl-atc__label');
+    if (!btn || btn.disabled) return;
+    btn.disabled = true;
+    label.textContent = 'Adding…';
+    fetch('/cart/add.js', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'X-Requested-With': 'XMLHttpRequest' },
+      body: JSON.stringify({ id: Number(form.querySelector('[name="id"]').value), quantity: 1 })
+    })
+    .then(function (r) {
+      if (!r.ok) throw new Error('cart_error');
+      return r.json();
+    })
+    .then(function () {
+      label.textContent = 'Added ✓';
+      btn.style.cssText = 'background:rgba(79,125,16,.15);border-color:#4f7d10;color:#4f7d10';
+      return fetch('/cart.js');
+    })
+    .then(function (r) { return r.json(); })
+    .then(function (cart) {
+      document.querySelectorAll('.pl-dot').forEach(function (d) {
+        d.textContent = cart.item_count;
+        d.style.display = cart.item_count > 0 ? 'grid' : 'none';
+      });
+    })
+    .catch(function () {
+      label.textContent = 'Error — retry';
+      btn.style.cssText = 'border-color:#c0392b;color:#c0392b';
+    })
+    .finally(function () {
+      setTimeout(function () {
+        btn.disabled = false;
+        btn.style.cssText = '';
+        label.textContent = 'Add to cart';
+      }, 2200);
+    });
+  });
+})();
 </script>
 
 {% schema %}
