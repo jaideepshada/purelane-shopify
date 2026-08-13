@@ -118,6 +118,8 @@
   background: rgba(255, 255, 255, .66);
   border: 1px solid rgba(75, 58, 143, .22);
   color: #01423b;
+  position: relative;
+  z-index: 2;
 }
 
 .pl-pillar__btn:hover {
