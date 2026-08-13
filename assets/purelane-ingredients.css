@@ -127,10 +127,10 @@
   font-size: 12.2px;
   color: var(--pl-paper-2);
   line-height: 1.5;
-  margin: 1em 0;
+  margin: 0;
 }
 
-@media (max-width: 420px) {
+@media (max-width: 760px) {
   .pl-ing-panel {
     padding: 22px 18px;
   }
