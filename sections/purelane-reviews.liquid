@@ -20,7 +20,7 @@
         <h2 class="pl-kicker">{{ section.settings.kicker }}</h2>
       {% endif %}
       <span class="pl-revhead__agg">
-        <span class="pl-revhead__stars" aria-hidden="true">★★★★★</span>
+        <span class="pl-revhead__stars" aria-hidden="true">★★★★★</span><span class="visually-hidden">{{ section.settings.aggregate_rating }} out of 5 stars</span>
         <b>{{ section.settings.aggregate_rating }}</b>
         from {{ section.settings.total_reviews }} reviews
       </span>
@@ -36,10 +36,9 @@
       {% for i in (1..2) %}
         {% for block in section.blocks %}
           <div class="pl-rcard pl-glass" {{ block.shopify_attributes }}>
-            <div class="pl-rcard__stars" aria-hidden="true">
-              {% assign stars = block.settings.stars | default: 5 %}
-              {% for star in (1..stars) %}★{% endfor %}
-            </div>
+            {%- assign stars = block.settings.stars | default: 5 -%}
+            <div class="pl-rcard__stars" aria-hidden="true">{% for star in (1..stars) %}★{% endfor %}</div>
+            <span class="visually-hidden">{{ stars }} out of 5 stars</span>
             {% if block.settings.title != blank %}
               <h3>{{ block.settings.title }}</h3>
             {% endif %}

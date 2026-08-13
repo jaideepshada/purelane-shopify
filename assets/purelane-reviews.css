@@ -38,7 +38,7 @@
   flex: 0 0 auto; width: 284px; padding: 15px 17px; border-radius: 18px;
 }
 .pl-rcard__stars { color: #7a9c1e; font-size: 10.5px; letter-spacing: .2em; margin-bottom: 9px; }
-.pl-rcard h5 {
+.pl-rcard h3 {
   font-family: 'Outfit', sans-serif; font-size: 12px; font-weight: 700;
   text-transform: uppercase; letter-spacing: .05em; color: var(--pl-surface); margin-bottom: 7px;
 }
