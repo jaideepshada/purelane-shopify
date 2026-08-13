@@ -129,3 +129,12 @@
   line-height: 1.5;
   margin: 0;
 }
+
+@media (max-width: 420px) {
+  .pl-ing-panel {
+    padding: 22px 18px;
+  }
+  .pl-ing-head {
+    margin-bottom: 26px;
+  }
+}
