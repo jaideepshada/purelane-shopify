@@ -17,7 +17,7 @@
   <div class="pl-wrap">
     <div class="pl-revhead">
       {% if section.settings.kicker != blank %}
-        <span class="pl-kicker">{{ section.settings.kicker }}</span>
+        <h2 class="pl-kicker">{{ section.settings.kicker }}</h2>
       {% endif %}
       <span class="pl-revhead__agg">
         <span class="pl-revhead__stars" aria-hidden="true">★★★★★</span>
@@ -41,7 +41,7 @@
               {% for star in (1..stars) %}★{% endfor %}
             </div>
             {% if block.settings.title != blank %}
-              <h5>{{ block.settings.title }}</h5>
+              <h3>{{ block.settings.title }}</h3>
             {% endif %}
             {% if block.settings.body != blank %}
               <p>{{ block.settings.body }}</p>

@@ -159,7 +159,8 @@
 
 /* stage controls */
 .hdots{display:flex;gap:7px;justify-content:center;align-items:center;margin-top:8px}
-.hdots button{width:6px;height:6px;padding:0;border:radius:50%;background:rgba(236,230,247,.28);transition:.4s ease;border:none;cursor:pointer}
+.hdots button{position:relative;width:6px;height:6px;padding:0;border-radius:50%;background:rgba(236,230,247,.28);transition:.4s ease;border:none;cursor:pointer}
+.hdots button::before{content:'';position:absolute;inset:-19px;}
 .hdots button.on{background:var(--pl-accent);width:20px;border-radius:999px}
 .hdots button:hover{background:rgba(236,230,247,.5)}
 @media(max-width:1150px) {

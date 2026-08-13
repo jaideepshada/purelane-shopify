@@ -11,7 +11,7 @@
       </div>
     {% endif %}
   </div>
-  <h4 class="pl-card__title">{{ product.title }}</h4>
+  <h3 class="pl-card__title">{{ product.title }}</h3>
   <div class="pl-card__rate">
     <b>★ {{ product.metafields.custom.rating | default: '4.8' }}</b>
     · {{ product.metafields.custom.review_count | default: '0' }} reviews

@@ -150,6 +150,7 @@
   gap: 7px;
 }
 .pl-slider-dot {
+  position: relative;
   width: 7px;
   height: 7px;
   border-radius: 999px;
@@ -158,6 +159,11 @@
   cursor: pointer;
   background: rgba(75, 58, 143, 0.20);
   transition: width .35s ease, background .35s ease;
+}
+.pl-slider-dot::before {
+  content: '';
+  position: absolute;
+  inset: -18px;
 }
 .pl-slider-dot.on {
   width: 22px;
