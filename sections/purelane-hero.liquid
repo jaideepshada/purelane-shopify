@@ -63,15 +63,15 @@
 
       <!-- Mobile Badge Strip -->
       <div class="pl-hero__strip pl-rv" style="transition-delay: 0.4s;">
-        <div class="pl-hero__strip-item">
+        <div class="pl-hero__strip-item pl-glass-2">
           {% render 'purelane-icons', name: 'leaf' %}
           {{ section.settings.badge_1_text }}
         </div>
-        <div class="pl-hero__strip-item">
+        <div class="pl-hero__strip-item pl-glass-2">
           {% render 'purelane-icons', name: 'shield' %}
           {{ section.settings.badge_2_text }}
         </div>
-        <div class="pl-hero__strip-item">
+        <div class="pl-hero__strip-item pl-glass-2">
           {% render 'purelane-icons', name: 'no-chemical' %}
           {{ section.settings.badge_3_text | downcase | replace: 'chemicals', 'chem' | replace: 'chemical', 'chem' | upcase }}
         </div>
