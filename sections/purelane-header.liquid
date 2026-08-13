@@ -7,12 +7,19 @@
 .pl-navpill {
   max-width: var(--pl-maxw); margin: 0 auto; display: flex; align-items: center; gap: 18px;
   padding: 10px 14px; border-radius: 999px;
-  background: linear-gradient(158deg, rgba(255,255,255,0.66), rgba(236,230,247,0.44));
-  border: 1px solid rgba(75,58,143,0.13);
-  box-shadow: 0 16px 38px rgba(58,44,112,0.10), inset 0 1px 0 rgba(255,255,255,0.86);
-  backdrop-filter: blur(12px) saturate(130%);
-  -webkit-backdrop-filter: blur(12px) saturate(130%);
+  position: relative;
+  background: linear-gradient(158deg, rgba(255,255,255,.80), rgba(236,230,247,.56) 58%, rgba(222,212,240,.50));
+  backdrop-filter: blur(24px) saturate(150%);
+  -webkit-backdrop-filter: blur(24px) saturate(150%);
+  border: 1px solid rgba(75,58,143,.16);
+  box-shadow: 0 22px 54px rgba(58,44,112,.13), inset 0 1px 0 rgba(255,255,255,.92);
   color: var(--pl-paper-2);
+  overflow: hidden;
+}
+.pl-navpill::after {
+  content: "";
+  position: absolute; inset: 0; border-radius: 999px; pointer-events: none;
+  background: linear-gradient(115deg, rgba(255,255,255,.16), transparent 30%, transparent 72%, rgba(240,160,60,.07));
 }
 .pl-brand { display: flex; align-items: center; gap: 11px; flex: 0 0 auto; text-decoration: none; opacity: 0.65; transition: opacity 0.3s ease; }
 .pl-brand:hover { opacity: 1; }

@@ -1,4 +1,4 @@
-/* ---------- scenes: sunlit shallow water ---------- */
+/* ---------- scenes: Version 2 confirmed values ---------- */
 .scenes{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden;background:linear-gradient(178deg,#fbfffb 0%,#eafaec 24%,#d6f1dc 54%,#bfe8ca 100%)}
 .scene{position:absolute;inset:0;opacity:0;transition:opacity 1.5s ease}
 .scene.on{opacity:1}
