@@ -26,9 +26,7 @@
       {%- unless page_title contains shop.name %} &ndash; {{ shop.name }}{% endunless -%}
     </title>
 
-    {% if page_description %}
-      <meta name="description" content="{{ page_description | escape }}">
-    {% endif %}
+    <meta name="description" content="{{ page_description | default: shop.description | default: 'Plant-based homecare for kitchen, laundry, bathroom and hands. Free shipping across India.' | escape }}">
 
     {% render 'meta-tags' %}
 
