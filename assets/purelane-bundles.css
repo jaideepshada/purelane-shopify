@@ -19,16 +19,22 @@
   background: rgba(201,118,29,.14); border: 1px solid rgba(201,118,29,.34); color: #4f7d10;
 }
 
-/* Thumbnail row */
+/* Thumbnail row — uses .pl-pimg from combos CSS */
 .pl-tierpix {
   display: flex; align-items: flex-end; justify-content: center;
-  gap: 2px; height: 78px; margin: -4px 0 16px;
+  gap: 4px; height: 78px; margin: -4px 0 16px;
   padding: 8px 6px; border-radius: 14px;
   background: linear-gradient(162deg, rgba(255,255,255,.54), rgba(236,230,247,.34));
   border: 1px solid rgba(75,58,143,.11);
 }
-.pl-tierpix svg { height: 62px; width: auto; filter: drop-shadow(0 5px 8px rgba(0,74,66,.13)); }
-.pl-tierpix--five svg { height: 54px; }
+.pl-tierpix .pl-pimg {
+  height: 62px;
+  width: auto;
+  flex: 0 0 auto;
+  margin: 0;
+  filter: drop-shadow(0 5px 8px rgba(0,74,66,.13));
+}
+.pl-tierpix--five .pl-pimg { height: 50px; }
 
 .pl-tier__qty {
   font-family: 'Outfit', sans-serif; font-weight: 800;
@@ -64,6 +70,6 @@
 @media (max-width: 760px) {
   .pl-tier__qty { font-size: 44px; }
   .pl-tierpix { height: 70px; }
-  .pl-tierpix svg { height: 54px; }
-  .pl-tierpix--five svg { height: 46px; }
+  .pl-tierpix .pl-pimg { height: 54px; }
+  .pl-tierpix--five .pl-pimg { height: 44px; }
 }

@@ -1,19 +1,23 @@
 {{ 'purelane-base.css' | asset_url | stylesheet_tag }}
+{{ 'purelane-combos.css' | asset_url | stylesheet_tag }}
 {{ 'purelane-bundles.css' | asset_url | stylesheet_tag }}
 
 <section class="pl-sec" id="bundles" data-scene="3">
   <div class="pl-wrap">
     <div class="pl-glass pl-sec-pad pl-rv">
     
-    <div class="pl-panel-head">
+    <div class="pl-panel-head pl-rv">
       {%- if section.settings.kicker != blank -%}
         <span class="pl-kicker">{{ section.settings.kicker }}</span>
       {%- endif -%}
       {%- if section.settings.heading != blank -%}
-        <h2 class="pl-d2" style="margin-top:12px">{{ section.settings.heading }}</h2>
+        <h2 class="pl-d2" style="margin-top:12px; margin-bottom:16px;">{{ section.settings.heading }}</h2>
       {%- endif -%}
+      <div class="pl-rule" style="margin-bottom:16px;">
+        <i></i>{% render 'purelane-icons', name: 'leaf', size: 16 %}<i></i>
+      </div>
       {%- if section.settings.subheading != blank -%}
-        <p class="pl-lede">{{ section.settings.subheading }}</p>
+        <p class="pl-lede" style="margin: 0 auto;">{{ section.settings.subheading }}</p>
       {%- endif -%}
     </div>
 
@@ -28,12 +32,23 @@
             <span class="pl-tier__tag">{{ block.settings.tag }}</span>
           {%- endif -%}
 
-          <div class="pl-tierpix{% if block.settings.quantity == '5' %} pl-tierpix--five{% endif %}">
-            {%- assign qty = block.settings.quantity | plus: 0 -%}
-            {%- if qty == 0 -%}{%- assign qty = 3 -%}{%- endif -%}
-            {%- for i in (1..qty) -%}
-              {% render 'purelane-icons', name: 'leaf' %}
-            {%- endfor -%}
+          {%- assign qty = block.settings.quantity | plus: 0 -%}
+          {%- if qty == 0 -%}{%- assign qty = 3 -%}{%- endif -%}
+          <div class="pl-tierpix{% if qty >= 5 %} pl-tierpix--five{% endif %}" aria-hidden="true">
+            {%- if qty == 2 -%}
+              <span class="pl-pimg pl-p-kitchen"></span>
+              <span class="pl-pimg pl-p-tap"></span>
+            {%- elsif qty == 3 -%}
+              <span class="pl-pimg pl-p-kitchen"></span>
+              <span class="pl-pimg pl-p-tap"></span>
+              <span class="pl-pimg pl-p-dish"></span>
+            {%- else -%}
+              <span class="pl-pimg pl-p-kitchen"></span>
+              <span class="pl-pimg pl-p-tap"></span>
+              <span class="pl-pimg pl-p-floor"></span>
+              <span class="pl-pimg pl-p-toilet"></span>
+              <span class="pl-pimg pl-p-laundry"></span>
+            {%- endif -%}
           </div>
 
           <div class="pl-tier__qty">
@@ -64,7 +79,10 @@
             {%- endif -%}
           </ul>
 
-          <a href="#" class="pl-btn pl-btn--{{ block.settings.button_style }}">Build Bundle</a>
+          <a href="#" class="pl-btn pl-btn--{{ block.settings.button_style }}">
+            Build this box
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="width:15px;height:15px;margin-left:6px;"><path d="M5 12h13m-5-6 6 6-6 6"/></svg>
+          </a>
         </div>
       {%- endfor -%}
     </div>
