@@ -21,31 +21,82 @@
         <p class="pl-signup-lede">{{ section.settings.subtext }}</p>
       {% endif %}
 
-      <form class="pl-signup-form" onsubmit="return false" novalidate>
+      <form
+        class="pl-signup-form"
+        id="pl-signup-form-{{ section.id }}"
+        action="/contact#contact_form"
+        method="post"
+        accept-charset="UTF-8"
+        novalidate
+      >
+        <input type="hidden" name="form_type" value="customer">
+        <input type="hidden" name="utf8" value="✓">
+        <input type="hidden" name="contact[tags]" value="newsletter">
         <input
           class="pl-signup-input"
           type="email"
+          name="contact[email]"
           placeholder="{{ section.settings.placeholder }}"
           aria-label="Email address"
           required
+          autocomplete="email"
         >
         <button class="pl-signup-btn" type="submit">
           {{ section.settings.button_label }}
         </button>
       </form>
 
+      <p class="pl-signup-success" id="pl-signup-success-{{ section.id }}" style="display:none;color:#4f7d10;font-weight:600;margin-top:12px;">
+        🎉 You're in! Check your inbox for your ₹100 off code.
+      </p>
+      <p class="pl-signup-error" id="pl-signup-error-{{ section.id }}" style="display:none;color:#c0392b;font-weight:600;margin-top:12px;">
+        Please enter a valid email address.
+      </p>
+
     </div>
   </div>
 </section>
 
 <script>
-  document.addEventListener('DOMContentLoaded', function () {
+  (function () {
+    var form = document.getElementById('pl-signup-form-{{ section.id }}');
+    var success = document.getElementById('pl-signup-success-{{ section.id }}');
+    var error = document.getElementById('pl-signup-error-{{ section.id }}');
+    if (!form) return;
+
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      var email = form.querySelector('input[type="email"]').value.trim();
+      var re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!re.test(email)) {
+        error.style.display = 'block';
+        success.style.display = 'none';
+        return;
+      }
+      error.style.display = 'none';
+
+      var data = new FormData(form);
+      fetch('/contact#contact_form', {
+        method: 'POST',
+        headers: { 'Accept': 'application/json' },
+        body: data
+      }).then(function () {
+        form.style.display = 'none';
+        success.style.display = 'block';
+      }).catch(function () {
+        /* fallback — native submit */
+        form.submit();
+      });
+    });
+
+    /* reveal animation */
     var obs = new IntersectionObserver(function (entries) {
       entries.forEach(function (e) { if (e.isIntersecting) e.target.classList.add('in'); });
     }, { rootMargin: '0px 0px -10% 0px', threshold: 0.1 });
     document.querySelectorAll('#shopify-section-{{ section.id }} .pl-rv').forEach(function (el) { obs.observe(el); });
-  });
+  })();
 </script>
+
 
 {% schema %}
 {
