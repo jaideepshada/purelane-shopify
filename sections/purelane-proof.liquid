@@ -4,15 +4,9 @@
 
 {% style %}
   .pl-proof-sec--{{ section.id }} {
-    --pl-sec-y: {{ section.settings.padding_y }}px;
     background-color: {{ section.settings.bg_color }};
   }
-  @media (max-width: 768px) {
-    .pl-proof-sec--{{ section.id }} {
-      --pl-sec-y: {{ section.settings.padding_y | divided_by: 1.5 }}px;
-    }
-  }
-{% endstyle %}
+  {% endstyle %}
 
 <section id="proof" class="pl-proof-sec pl-proof-sec--{{ section.id }}" data-scene="3">
   <div class="pl-wrap">

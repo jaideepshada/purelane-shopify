@@ -1,0 +1,62 @@
+{% style %}
+.pl-sticky {
+  position: fixed; left: 0; right: 0; bottom: 0; z-index: 48;
+  padding: 10px 14px calc(10px + env(safe-area-inset-bottom));
+  background: rgba(255, 255, 255, 0.86);
+  backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+  border-top: 1px solid rgba(75, 58, 143, 0.14);
+  display: flex; align-items: center; gap: 12px;
+}
+.pl-sticky__lbl { line-height: 1.2; }
+.pl-sticky__lbl b {
+  display: block; font-family: 'Outfit', sans-serif; font-size: 13px; font-weight: 700;
+  text-transform: uppercase; letter-spacing: .04em; color: var(--pl-surface);
+}
+.pl-sticky__lbl span { font-size: 10.5px; color: var(--pl-paper-3); }
+.pl-sticky .pl-btn { margin-left: auto; }
+@media(min-width: 960px){ .pl-sticky { display: none; } }
+{% endstyle %}
+
+<div class="pl-sticky">
+  <span class="pl-sticky__lbl">
+    <b>{{ section.settings.heading }}</b>
+    <span>{{ section.settings.subheading }}</span>
+  </span>
+  <a class="pl-btn pl-btn-primary pl-btn-sm" href="{{ section.settings.button_link | default: '#bundles' }}">{{ section.settings.button_label }}</a>
+</div>
+
+{% schema %}
+{
+  "name": "Purelane Sticky CTA",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Pick any 3, pay ₹499"
+    },
+    {
+      "type": "text",
+      "id": "subheading",
+      "label": "Subheading",
+      "default": "Free shipping, always"
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Button Label",
+      "default": "Build bundle"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button Link"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Purelane Sticky CTA"
+    }
+  ]
+}
+{% endschema %}

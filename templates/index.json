@@ -12,7 +12,7 @@
     "purelane_hero": {
       "type": "purelane-hero",
       "settings": {
-        "heading": "Clean That Lasts",
+        "heading": "Clean\nThat\nLasts",
         "heading_highlight": "Lasts",
         "subheading": "Homecare that works on the toughest grime, made from plants. Kind to your home, your family and the world outside it.",
         "button_label": "Shop now",
@@ -20,7 +20,7 @@
         "secondary_button_label": "How it works",
         "secondary_button_link": "",
         "badge_1_text": "Plant powered",
-        "badge_2_text": "Safe for kids & pets",
+        "badge_2_text": "Kids & pet safe",
         "badge_3_text": "Zero harsh chemicals"
       }
     },
@@ -437,6 +437,10 @@
         "placeholder": "your@email.com",
         "button_label": "Get my \u20b9100 off"
       }
+    },
+    "purelane_sticky": {
+      "type": "purelane-sticky-cta",
+      "settings": {}
     }
   },
   "order": [
@@ -452,6 +456,7 @@
     "purelane_whybundles",
     "purelane_categories",
     "purelane_trust",
-    "purelane_newsletter"
+    "purelane_newsletter",
+    "purelane_sticky"
   ]
 }

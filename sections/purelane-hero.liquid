@@ -73,7 +73,7 @@
         </div>
         <div class="pl-hero__strip-item">
           {% render 'purelane-icons', name: 'no-chemical' %}
-          {{ section.settings.badge_3_text }}
+          {{ section.settings.badge_3_text | downcase | replace: 'chemicals', 'chem' | replace: 'chemical', 'chem' | upcase }}
         </div>
       </div>
     </div>
@@ -238,7 +238,7 @@
       "type": "text",
       "id": "badge_2_text",
       "label": "Badge 2 Text",
-      "default": "Safe for kids & pets"
+      "default": "Kids & pet safe"
     },
     {
       "type": "text",

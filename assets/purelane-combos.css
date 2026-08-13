@@ -134,13 +134,24 @@
 /* Slider wrapper */
 .pl-combo-slider { position: relative; }
 
+.pl-swipecue {
+  display: flex; align-items: center; justify-content: center; gap: 8px; font-size: 10px; font-weight: 700;
+  letter-spacing: .16em; text-transform: uppercase; color: var(--pl-paper-3); margin-top: 2px;
+}
+.pl-swipecue svg { width: 14px; height: 14px; color: var(--pl-accent); }
+
 /* Slider controls row */
 .pl-slider-controls {
-  display: flex;
+  display: none; /* hidden on mobile */
   align-items: center;
   justify-content: center;
   gap: 14px;
   margin-top: 16px;
+}
+
+@media (min-width: 1024px) {
+  .pl-swipecue { display: none; }
+  .pl-slider-controls { display: flex; }
 }
 
 /* Dot indicators */

@@ -102,6 +102,13 @@ body, html {
   padding: 0;
 }
 
+body {
+  padding-bottom: 74px; /* Space for mobile sticky CTA */
+}
+@media (min-width: 960px) {
+  body { padding-bottom: 0; }
+}
+
 [class*="shopify-section"] {
   border: none !important;
   box-shadow: none !important;

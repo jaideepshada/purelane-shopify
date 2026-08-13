@@ -1,6 +1,7 @@
 .pl-footer {
   position: relative;
   z-index: 2;
+  margin-top: var(--pl-sec-y);
   padding: 44px 0 30px;
   background: linear-gradient(180deg,rgba(255,255,255,.62),rgba(214,241,221,.90));
   border-top: 1px solid rgba(75,58,143,.13);
@@ -72,15 +73,17 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 32px;
-  height: 32px;
-  background: var(--deep, #e2daf3);
+  width: 40px;
+  height: 40px;
+  flex: 0 0 auto;
   border-radius: 50%;
+  background: linear-gradient(150deg,rgba(201,118,29,.20),rgba(75,58,143,.14));
+  border: 1px solid rgba(75,58,143,.18);
 }
 .pl-footer-brand .mark svg {
-  width: 16px;
-  height: 16px;
-  color: var(--accent, #b8701c);
+  width: 23px;
+  height: 23px;
+  color: var(--pl-accent) !important;
 }
 .pl-footer-brand .txt {
   display: flex;
@@ -102,4 +105,10 @@
   color: var(--paper-3, rgba(36,26,61,.56));
   text-transform: uppercase;
   margin-top: 2px;
+}
+
+@media(max-width: 600px) {
+  .pl-footer-brand .mark { width: 34px; height: 34px; }
+  .pl-footer-brand .n1 { font-size: 14.5px; }
+  .pl-footer-brand .n2 { font-size: 7.6px; letter-spacing: .2em; }
 }

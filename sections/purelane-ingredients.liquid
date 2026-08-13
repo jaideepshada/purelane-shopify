@@ -3,13 +3,7 @@
 
 {% style %}
   .pl-ing-sec--{{ section.id }} {
-    --pl-sec-y: {{ section.settings.padding_y }}px;
     background-color: {{ section.settings.bg_color }};
-  }
-  @media (max-width: 768px) {
-    .pl-ing-sec--{{ section.id }} {
-      --pl-sec-y: {{ section.settings.padding_y | divided_by: 1.5 }}px;
-    }
   }
 {% endstyle %}
 

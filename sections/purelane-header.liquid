@@ -55,10 +55,10 @@
 .pl-ico svg { width: 18px; height: 18px; }
 .pl-dot {
   position: absolute; top: 5px; right: 5px; min-width: 16px; height: 16px; border-radius: 999px;
-  background: var(--pl-accent-2); color: #08211a; font-size: 9.5px; font-weight: 800;
+  background: #4b3a8f; color: #f4fdf6; font-size: 9.5px; font-weight: 800;
   display: grid; place-items: center; padding: 0 4px;
 }
-.pl-burger { display: grid; }
+.pl-burger { display: grid; border: none !important; background: transparent !important; box-shadow: none !important; outline: none; }
 @media(max-width:600px) {
   .pl-ico.hide-s { display: none; }
   .pl-brand .mark { width: 34px; height: 34px; }
@@ -82,7 +82,7 @@
         </svg>
       </span>
       <span class="txt">
-        <span class="n1">{{ shop.name }}</span>
+        <span class="n1">PURELANE</span>
         <span class="n2">Clean, simply</span>
       </span>
     </a>
@@ -103,11 +103,11 @@
         </a>
       {%- endif -%}
       <a href="{{ routes.cart_url }}" class="pl-ico" id="cart-icon-bubble" aria-label="Cart">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="8" cy="21" r="1"/><circle cx="19" cy="21" r="1"/><path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"/></svg>
-        <span class="pl-dot"{% if cart.item_count == 0 %} style="display:none"{% endif %}>{{ cart.item_count }}</span>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6h2l2.2 10.4a1.6 1.6 0 0 0 1.6 1.3h7.6a1.6 1.6 0 0 0 1.6-1.3L20.5 9H6.4"/><circle cx="10" cy="20.5" r="1.1"/><circle cx="17.5" cy="20.5" r="1.1"/></svg>
+        <span class="pl-dot">{{ cart.item_count }}</span>
       </a>
       <button type="button" class="pl-ico pl-burger" aria-label="Menu">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><line x1="4" x2="20" y1="12" y2="12"/><line x1="4" x2="20" y1="6" y2="6"/><line x1="4" x2="20" y1="18" y2="18"/></svg>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M4 8h16M4 16h16"/></svg>
       </button>
     </div>
   </div>
