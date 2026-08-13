@@ -88,11 +88,9 @@
     </a>
     
     <nav class="pl-nav" aria-label="Main" style="font-family: 'Inter', sans-serif;">
-      <a href="#top">Home</a>
-      <a href="#ingredients">Ingredients</a>
-      <a href="#how">How it works</a>
-      <a href="#shop">Shop</a>
-      <a href="#bundles">Bundles</a>
+      {%- for link in linklists[section.settings.menu].links -%}
+        <a href="{{ link.url }}">{{ link.title }}</a>
+      {%- endfor -%}
     </nav>
     
     <div class="pl-navtools">
