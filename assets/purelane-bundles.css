@@ -4,7 +4,8 @@
 @media (min-width: 760px) { .pl-tiers { grid-template-columns: repeat(3, 1fr); } }
 
 .pl-tier {
-  padding: 24px 22px; transition: .4s var(--pl-ease);
+  padding: 16px 18px; transition: .4s var(--pl-ease);
+  border-radius: 32px !important;
 }
 .pl-tier:hover { transform: translateY(-5px); }
 .pl-tier--best {
@@ -22,7 +23,7 @@
 /* Thumbnail row — uses .pl-pimg from combos CSS */
 .pl-tierpix {
   display: flex; align-items: flex-end; justify-content: center;
-  gap: 8px; height: 78px; margin: -4px 0 16px;
+  gap: 8px; height: 78px; margin: -4px 0 8px;
   padding: 8px 6px; border-radius: 14px;
   background: linear-gradient(162deg, rgba(255,255,255,.54), rgba(236,230,247,.34));
   border: 1px solid rgba(75,58,143,.11);
@@ -42,11 +43,11 @@
 }
 .pl-tier__qty small {
   font-size: 14px; font-weight: 600; letter-spacing: .1em;
-  text-transform: uppercase; color: var(--pl-paper-3); display: block; margin-top: 6px;
+  text-transform: uppercase; color: var(--pl-paper-3); display: block; margin-top: 2px;
 }
 .pl-tier__price {
   font-family: 'Outfit', sans-serif; font-weight: 700;
-  font-size: 27px; color: var(--pl-accent); margin: 16px 0 4px;
+  font-size: 27px; color: var(--pl-accent); margin: 8px 0 4px;
 }
 .pl-tier__price s {
   font-size: 14px; color: var(--pl-paper-3); font-weight: 500; margin-left: 8px;
@@ -57,7 +58,7 @@
 
 
 .pl-tier ul {
-  list-style: none; margin: 16px 0 24px; display: grid; gap: 8px; padding: 0;
+  list-style: none; margin: 12px 0 16px; display: grid; gap: 8px; padding: 0;
   flex: 1;
 }
 .pl-tier li {
